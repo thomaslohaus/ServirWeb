@@ -4,16 +4,16 @@
 
 <a href="${linkTo[CadastroController].form()}">Novo cadastro</a>
 
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="table table-hover">
   <thead>
 	<thead>
-		<tr>
+		<tr class="success">
 			<th>Id</th>
-			<th class="mdl-data-table__cell--non-numeric">Nome</th>
-			<th class="mdl-data-table__cell--non-numeric">E-mail</th>
-			<th class="mdl-data-table__cell--non-numeric">Celular</th>
-			<th class="mdl-data-table__cell--non-numeric">Sexo</th>
-			<th class="mdl-data-table__cell--non-numeric">Usuario</th>
+			<th>Nome</th>
+			<th>E-mail</th>
+			<th>Celular</th>
+			<th>Sexo</th>
+			<th>Usuario</th>
 			<th>Ações</th>
 		</tr>
 	</thead>

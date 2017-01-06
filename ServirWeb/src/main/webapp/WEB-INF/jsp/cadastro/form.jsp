@@ -55,7 +55,7 @@
 						<label class="col-md-2 control-label" for="naturalidade">Naturalidade (Estado)</label>
 						<servir:validationMessage nome="pessoa.naturalidade" />
 						<div class="col-md-4 form-group-required" id="naturalidade">
-							<input type="text" name="pessoa.naturalidade" class="form-control" value="${pessoa.naturalidade}" placeholder="Campo Obrigatório" />
+							<input type="text" name="naturalidade" class="form-control" value="${naturalidade}" placeholder="Campo Obrigatório" />
 							<select name="pessoa.naturalidade" class="form-control" onchange="removeBlankOption(this)" onfocus="removeBlankOption(this)">
 								<option value="" label="Campo Obrigatório" />
 								<c:forEach items="${estados}" var="estado">
@@ -118,7 +118,8 @@
 				<div class="col-md-2">
 					<div class="col-md-11">
 						<a href="#" class="thumbnail">
-							<img src="https://lh3.googleusercontent.com/-iE-ppzRWaQ4/AAAAAAAAAAI/AAAAAAAAAAA/AGNl-OqqfdJ5_WrBuUxJxiotvciEYPSC4g/s96-c-mo/photo.jpg" 
+							<!-- <img src="https://lh3.googleusercontent.com/-iE-ppzRWaQ4/AAAAAAAAAAI/AAAAAAAAAAA/AGNl-OqqfdJ5_WrBuUxJxiotvciEYPSC4g/s96-c-mo/photo.jpg"-->
+							<img src="http://goo.gl/46DJuy" 
 								alt="Img"
 								style="min-height:50px;max-height:150px;">
 						</a>
