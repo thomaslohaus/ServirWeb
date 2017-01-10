@@ -61,6 +61,9 @@ public class Pessoa {
 	
 	@ManyToOne
 	private Endereco endereco;
+	
+	@OneToOne(mappedBy = "pessoa")
+	private Documentos documentos;
 
 	public int getId() {
 		return id;
@@ -205,5 +208,12 @@ public class Pessoa {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
+	public Documentos getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(Documentos documentos) {
+		this.documentos = documentos;
+	}	
 }

@@ -135,10 +135,22 @@
 		</div>
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-11">
 					<div class="row" style="margin-bottom: 5px">
-						<label class="col-md-2 control-label" for="nome">Nome Completo</label>
-						
+						<div class="panel panel-primary col-md-offset-1">
+							<div class="panel-heading">
+								<h6 class="panel-title">CPF</h6>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<label class="col-md-2 control-label" for="cpfNumero">Número</label>
+									<div class="col-md-4 form-group-required" id="cpfNumero">
+										<input type="text" name="pessoa.documentos.cpfNumero" class="form-control" 
+											value="${pessoa.documentos.cpfNumero}" placeholder="Campo Obrigatório" />
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
