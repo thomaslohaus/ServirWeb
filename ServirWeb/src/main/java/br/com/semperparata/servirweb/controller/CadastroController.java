@@ -13,14 +13,17 @@ import br.com.caelum.vraptor.validator.Validator;
 import br.com.semperparata.servirweb.dao.EstadoDao;
 import br.com.semperparata.servirweb.dao.PaisDao;
 import br.com.semperparata.servirweb.dao.PessoaDao;
+import br.com.semperparata.servirweb.dao.UsuarioDao;
 import br.com.semperparata.servirweb.enums.EstadoCivil;
 import br.com.semperparata.servirweb.enums.Sexo;
 import br.com.semperparata.servirweb.model.Pessoa;
+import br.com.semperparata.servirweb.model.Usuario;
 
 @Controller
 public class CadastroController {
 	
 	private PessoaDao pessoaDao; 
+	private UsuarioDao usuarioDao;
 	private EstadoDao estadoDao;
 	private PaisDao paisDao;
 	
@@ -28,8 +31,9 @@ public class CadastroController {
 	private Validator validator;
 
 	@Inject
-	public CadastroController(PessoaDao pessoaDao, EstadoDao estadoDao, PaisDao paisDao, Result result, Validator validator){
+	public CadastroController(PessoaDao pessoaDao, UsuarioDao usuarioDao, EstadoDao estadoDao, PaisDao paisDao, Result result, Validator validator){
 		this.pessoaDao = pessoaDao;
+		this.usuarioDao = usuarioDao;
 		this.estadoDao = estadoDao;
 		this.paisDao = paisDao;
 		this.result = result;
@@ -62,6 +66,13 @@ public class CadastroController {
 	public void salvar(@Valid Pessoa pessoa) {
 		validator.onErrorRedirectTo(this).form();
 		pessoaDao.persistir(pessoa);
+		
+		Usuario usuario = usuarioDao.carrega(pessoa);
+		if (usuario == null) {
+			usuario = new Usuario(pessoa);
+		}
+		usuarioDao.persistir(usuario);
+		
 		result.redirectTo(this).lista();
 	}
 	
