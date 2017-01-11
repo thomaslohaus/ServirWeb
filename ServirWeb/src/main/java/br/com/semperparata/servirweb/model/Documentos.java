@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Documentos {
@@ -14,9 +13,6 @@ public class Documentos {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
-	@OneToOne
-	private Pessoa pessoa;
 	
 	private String cpfNumero;
 	private File cpfCopia;
@@ -40,14 +36,6 @@ public class Documentos {
 	
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-	
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
 	}
 	
 	public String getCpfNumero() {
