@@ -1,5 +1,6 @@
 package br.com.semperparata.servirweb.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -62,7 +63,7 @@ public class Pessoa {
 	@ManyToOne
 	private Endereco endereco;
 	
-	@OneToOne(mappedBy = "pessoa")
+	@OneToOne(targetEntity=Documentos.class, cascade=CascadeType.ALL)
 	private Documentos documentos;
 
 	public int getId() {
