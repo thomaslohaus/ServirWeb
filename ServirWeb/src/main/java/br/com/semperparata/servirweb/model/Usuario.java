@@ -1,5 +1,7 @@
 package br.com.semperparata.servirweb.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,9 +10,19 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+@SuppressWarnings("serial")
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 
+	public Usuario() {}
+	
+	public Usuario(Pessoa pessoa) {
+		this.pessoa = pessoa;
+		this.login = pessoa.getEmail();
+		this.senha = "";
+		this.superUser = false;
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;

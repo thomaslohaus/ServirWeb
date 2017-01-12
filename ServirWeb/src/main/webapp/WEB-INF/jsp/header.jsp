@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,7 @@
 	
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	
-	<link rel="icon" type="image/png" href="http://goo.gl/46DJuy">
+	<link rel="icon" type="image/png" href="https://goo.gl/UIHGqD">
 	
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -31,6 +32,9 @@
 			  </button>
 			  <a class="navbar-brand" href="${linkTo[IndexController].index()}">Servir Web</a>
 			  <a class="navbar-brand" href="${linkTo[CadastroController].lista()}">USUÁRIOS</a>
+			  <c:if test="${usuarioLogado.logado}">
+				<a class="navbar-brand" href="${linkTo[LoginController].deslogar()}">Deslogar</a>
+			  </c:if>
 			</div>
         
 			<div id="user-img" class="navbar-form navbar-right">
