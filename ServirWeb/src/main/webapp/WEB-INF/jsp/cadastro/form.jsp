@@ -7,8 +7,25 @@
 .form-control-feedback {
 	text-align: inherit !important;
 }
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
 </style>
-<form action="${linkTo[CadastroController].salvar(null)}" method="post" enctype="multipart/form-data">
+<form action="${linkTo[CadastroController].salvar(null, null)}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="pessoa.id" id="id" value="${pessoa.id}" />
 	
 	<div class="pull-right">
@@ -146,6 +163,11 @@
 									value="${pessoa.documentos.cpfNumero}" />
 							</div>
 						</div>
+						<div class="fileUpload btn btn-primary">
+							<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+							<input id="fileinput" type="file" name="photo" class="upload">
+						</div>
+						<label id="uploadedFileName"></label>
 					</td>
 				</tr>
 				
@@ -343,6 +365,12 @@ $('#cpfNumero').children('input').blur(function() {
 		mostrarMsgErro('cpfNumero', 'CPF Inválido!');		
 	}
 		
+});
+
+$('#fileinput').change(function() {
+	var fullname = $('#fileinput').val();
+	var name = fullname.substring(fullname.lastIndexOf('\\') + 1, fullname.length);
+	$('#uploadedFileName').text(name);	
 });
 </script>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>

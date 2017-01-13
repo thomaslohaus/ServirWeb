@@ -7,8 +7,11 @@ import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.IncludeParameters;
+import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.semperparata.servirweb.dao.EstadoDao;
 import br.com.semperparata.servirweb.dao.PaisDao;
@@ -18,6 +21,7 @@ import br.com.semperparata.servirweb.enums.EstadoCivil;
 import br.com.semperparata.servirweb.enums.Sexo;
 import br.com.semperparata.servirweb.model.Pessoa;
 import br.com.semperparata.servirweb.model.Usuario;
+import br.com.semperparata.servirweb.security.NoAuth;
 
 @Controller
 public class CadastroController {
@@ -63,7 +67,10 @@ public class CadastroController {
 	}
 	
 	@IncludeParameters
-	public void salvar(@Valid Pessoa pessoa) {
+	@Post
+	@NoAuth
+	@UploadSizeLimit(sizeLimit = 40*1024*1024, fileSizeLimit = 10*1024*1024)
+	public void salvar(@Valid Pessoa pessoa, UploadedFile photo) {
 		validator.onErrorRedirectTo(this).form();
 		pessoaDao.persistir(pessoa);
 		
