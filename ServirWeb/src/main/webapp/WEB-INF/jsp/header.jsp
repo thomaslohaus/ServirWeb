@@ -17,23 +17,22 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-<style>
-.nav-user-pop-up {
-	display: none;
-	background: #fafafa;
-	border: 2px solid;
-	border-color: #ccc;
-	border-radius: 4px;
-	overflow: hidden;
-	position: absolute;
-	right: 100px;
-	top: 51px;
-	white-space: nowrap;
-	z-index: 1;
-}
-</style>
+	<link rel="stylesheet" href="<c:url value="/resources/css/servir.css"/>">
+	<script type="text/javascript" src="<c:url value="/resources/js/servir.js"/>"></script>
+	
+	<script type="text/javascript">
+		function hideUserMenu() {
+			$('#user-info-menu').hide();
+		};
+		
+		function showUserMenu() {
+			$('#user-info-menu').show();
+		};
+	</script>
+	
 </head>
 <body>
+
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -47,17 +46,19 @@
 			</div>
         	
         	<c:if test="${usuarioLogado.logado}">
-				<div id="user-img" class="navbar-form navbar-right">
+				<div id="user-menu-img" class="navbar-form navbar-right">
 					<span>
-						<!-- <img src="https://lh3.googleusercontent.com/-iE-ppzRWaQ4/AAAAAAAAAAI/AAAAAAAAAAA/AGNl-OqqfdJ5_WrBuUxJxiotvciEYPSC4g/s96-c-mo/photo.jpg" 
-							class="img-circle" height="42" width="42">
-						 -->
-						<a class="navbar-brand" style="padding: 5px; height: auto;" href="#">${usuarioLogado.usuario.pessoa.primeiroNome}</a>
+						<a class="navbar-brand" style="padding: 5px; height: auto;">${usuarioLogado.usuario.pessoa.primeiroNome}</a>
 					</span>
 				</div>
 			</c:if>
 		</div>
-		<div id="user-info-menu" class="container-fluid nav-user-pop-up">
+		<div id="user-info-menu" class="container-fluid user-info-menu">
+			<div style="float: right;">
+				<a onclick="hideUserMenu();">
+					<span class="close-modal glyphicon glyphicon-remove" style="margin-top: 7px; margin-right: -5px; color: darkgray;"></span>
+				</a>
+			</div>
 			<div>
 				<div style="display: inline-block; vertical-align: top; margin-top: 20px;">
 					<span>

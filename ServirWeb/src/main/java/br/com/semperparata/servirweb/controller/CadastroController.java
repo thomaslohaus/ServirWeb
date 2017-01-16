@@ -13,6 +13,7 @@ import br.com.caelum.vraptor.interceptor.IncludeParameters;
 import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.semperparata.servirweb.dao.EntidadeDao;
 import br.com.semperparata.servirweb.dao.EstadoDao;
 import br.com.semperparata.servirweb.dao.PaisDao;
 import br.com.semperparata.servirweb.dao.PessoaDao;
@@ -25,66 +26,70 @@ import br.com.semperparata.servirweb.security.NoAuth;
 
 @Controller
 public class CadastroController {
-	
-	private PessoaDao pessoaDao; 
+
+	private PessoaDao pessoaDao;
 	private UsuarioDao usuarioDao;
 	private EstadoDao estadoDao;
 	private PaisDao paisDao;
-	
+
 	private Result result;
 	private Validator validator;
+	private EntidadeDao entidadeDao;
 
 	@Inject
-	public CadastroController(PessoaDao pessoaDao, UsuarioDao usuarioDao, EstadoDao estadoDao, PaisDao paisDao, Result result, Validator validator){
+	public CadastroController(PessoaDao pessoaDao, UsuarioDao usuarioDao, EstadoDao estadoDao, PaisDao paisDao,
+			EntidadeDao entidadeDao, Result result, Validator validator) {
 		this.pessoaDao = pessoaDao;
 		this.usuarioDao = usuarioDao;
 		this.estadoDao = estadoDao;
 		this.paisDao = paisDao;
+		this.entidadeDao = entidadeDao;
 		this.result = result;
 		this.validator = validator;
 	}
-	
-	public CadastroController() {}
-	
+
+	public CadastroController() {
+	}
+
 	private void incluirListasNoResult() {
 		result.include("sexos", Sexo.values());
 		result.include("estadosCivis", EstadoCivil.values());
 		result.include("estados", estadoDao.lista());
 		result.include("paises", paisDao.lista());
-		
+		result.include("entidades", entidadeDao.lista());
 	}
-	
-	@Path(value={"/cadastro", "/cadastro/"})
-	public void form(){
+
+	@Path(value = { "/cadastro", "/cadastro/" })
+	public void form() {
 		incluirListasNoResult();
 	}
 
-	@Path(value={"/cadastro/{id}", "/cadastro/{id}/"})
-	public void form(int id){
+	@Path(value = { "/cadastro/{id}", "/cadastro/{id}/" })
+	public void form(int id) {
 		Pessoa pessoa = pessoaDao.carrega(id);
 		result.include("pessoa", pessoa);
 		incluirListasNoResult();
 	}
-	
+
 	@IncludeParameters
 	@Post
 	@NoAuth
-	@UploadSizeLimit(sizeLimit = 40*1024*1024, fileSizeLimit = 10*1024*1024)
+	@UploadSizeLimit(sizeLimit = 40 * 1024 * 1024, fileSizeLimit = 10 * 1024 * 1024)
 	public void salvar(@Valid Pessoa pessoa, UploadedFile photo) {
 		validator.onErrorRedirectTo(this).form();
 		pessoaDao.persistir(pessoa);
-		
+
 		Usuario usuario = usuarioDao.carrega(pessoa);
 		if (usuario == null) {
 			usuario = new Usuario(pessoa);
 		}
 		usuarioDao.persistir(usuario);
-		
+
 		result.redirectTo(this).lista();
 	}
-	
+
 	@Path("/cadastros")
-	public void lista(){
+	public void lista() {
 		List<Pessoa> pessoas = pessoaDao.lista();
 		result.include("pessoas", pessoas);
 	}

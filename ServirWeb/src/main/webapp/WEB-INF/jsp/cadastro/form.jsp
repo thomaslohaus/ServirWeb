@@ -27,9 +27,12 @@
 </style>
 <form action="${linkTo[CadastroController].salvar(null, null)}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="pessoa.id" id="id" value="${pessoa.id}" />
+	<input type="hidden" name="pessoa.documentos.id" value="${pessoa.documentos.id}" />
+	<input type="hidden" name="pessoa.bandeirante.id" value="${pessoa.bandeirante.id}" />
 	
 	<div class="pull-right">
-		<input type="submit" value="Salvar" class="btn btn-primary" />
+		<a class="btn btn-default" href="${linkTo[CadastroController].lista()}">Voltar</a>
+		<input type="submit" value="Salvar" class="btn btn-success">
 	</div>
 	
 	<h2>Cadastro</h2>
@@ -148,7 +151,7 @@
 			<h5 class="panel-title">Documentos</h5>
 		</div>
 		<div class="panel-body" style="padding: 0px">
-			<input type="hidden" name="pessoa.documentos.id" value="${pessoa.documentos.id}" />
+
 			<table class="table table-bordered" style="margin-bottom: 0px">
 				
 				<tr id="DocCpf">

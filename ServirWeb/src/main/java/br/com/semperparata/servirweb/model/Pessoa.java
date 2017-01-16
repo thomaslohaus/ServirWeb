@@ -62,6 +62,9 @@ public class Pessoa implements Serializable {
 	@OneToOne(mappedBy = "pessoa")
 	private Usuario usuario;
 	
+	@OneToOne(targetEntity=Bandeirante.class, cascade=CascadeType.ALL)
+	private Bandeirante bandeirante; 
+	
 	@ManyToOne
 	private Endereco endereco;
 	
@@ -206,6 +209,14 @@ public class Pessoa implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Bandeirante getBandeirante() {
+		return bandeirante;
+	}
+
+	public void setBandeirante(Bandeirante bandeirante) {
+		this.bandeirante = bandeirante;
 	}
 
 	public Endereco getEndereco() {
