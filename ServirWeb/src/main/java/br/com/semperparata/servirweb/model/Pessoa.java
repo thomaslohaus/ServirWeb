@@ -1,5 +1,7 @@
 package br.com.semperparata.servirweb.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,7 +19,7 @@ import br.com.semperparata.servirweb.enums.EstadoCivil;
 import br.com.semperparata.servirweb.enums.Sexo;
 
 @Entity
-public class Pessoa {
+public class Pessoa implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -76,6 +78,10 @@ public class Pessoa {
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public String getPrimeiroNome() {
+		return nome.split(" ")[0];
 	}
 
 	public void setNome(String nome) {
