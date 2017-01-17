@@ -27,25 +27,29 @@ import br.com.semperparata.servirweb.security.NoAuth;
 @Controller
 public class CadastroController {
 
+	private Result result;
+	private Validator validator;
+	
 	private PessoaDao pessoaDao;
 	private UsuarioDao usuarioDao;
 	private EstadoDao estadoDao;
 	private PaisDao paisDao;
-
-	private Result result;
-	private Validator validator;
 	private EntidadeDao entidadeDao;
+	
+	
+	
 
 	@Inject
-	public CadastroController(PessoaDao pessoaDao, UsuarioDao usuarioDao, EstadoDao estadoDao, PaisDao paisDao,
-			EntidadeDao entidadeDao, Result result, Validator validator) {
+	public CadastroController(Result result, Validator validator, 
+			PessoaDao pessoaDao, UsuarioDao usuarioDao, EstadoDao estadoDao, PaisDao paisDao, EntidadeDao entidadeDao) {
+		this.result = result;
+		this.validator = validator;
 		this.pessoaDao = pessoaDao;
 		this.usuarioDao = usuarioDao;
 		this.estadoDao = estadoDao;
 		this.paisDao = paisDao;
 		this.entidadeDao = entidadeDao;
-		this.result = result;
-		this.validator = validator;
+		
 	}
 
 	public CadastroController() {
@@ -56,7 +60,9 @@ public class CadastroController {
 		result.include("estadosCivis", EstadoCivil.values());
 		result.include("estados", estadoDao.lista());
 		result.include("paises", paisDao.lista());
-		result.include("entidades", entidadeDao.lista());
+		result.include("nucleos", entidadeDao.nucleos());
+		result.include("grupos", entidadeDao.grupos());
+		result.include("equipes", entidadeDao.equipes());
 	}
 
 	@Path(value = { "/cadastro", "/cadastro/" })

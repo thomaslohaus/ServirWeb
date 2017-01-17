@@ -44,7 +44,7 @@
 				<td>${pessoa.usuario.login}</td>
 				<td>${pessoa.bandeirante.entidade.equipe.descricao}</td>
 				<td>${pessoa.bandeirante.entidade.grupo.descricao}</td>
-				<td>${pessoa.bandeirante.entidade.nucelo.descricao}</td>
+				<td>${pessoa.bandeirante.entidade.nucleo.descricao}</td>
 				<td style="text-align: center;">
 					<a href="${linkTo[CadastroController].form(pessoa.id)}" data-toggle="tooltip" data-placement="top" title="Editar Cadastro">
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>

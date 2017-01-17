@@ -88,7 +88,7 @@ public class Entidade {
 		return getEntidade(TipoEntidade.GRUPO.getNivel());
 	}
 	
-	public Entidade getNucelo() {
+	public Entidade getNucleo() {
 		return getEntidade(TipoEntidade.NUCLEO.getNivel());
 	}
 	
