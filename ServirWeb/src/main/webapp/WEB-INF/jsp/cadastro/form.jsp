@@ -24,7 +24,17 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+html {
+  overflow-y: scroll;
+}
 </style>
+<script>
+$('#myTabs a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
+</script>
 <form action="${linkTo[CadastroController].salvar(null, null)}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="pessoa.id" id="id" value="${pessoa.id}" />
 	<input type="hidden" name="pessoa.documentos.id" value="${pessoa.documentos.id}" />
@@ -36,7 +46,13 @@
 	</div>
 	
 	<h2>Cadastro</h2>
-
+<div>
+<ul class="nav nav-tabs" role="tablist">
+	<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+	<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+</ul>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="home">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h5 class="panel-title">Dados Pessoais</h5>
@@ -245,6 +261,10 @@
 			</table>
 		</div>
 	</div>
+</div>
+<div role="tabpanel" class="tab-pane" id="profile">.Profile.</div>
+</div>
+</div>
 </form>
 <script>
 function removeBlankOption(control) {

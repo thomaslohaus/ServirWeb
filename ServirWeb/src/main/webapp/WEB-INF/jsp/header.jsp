@@ -55,9 +55,9 @@
 		</div>
 		<div id="user-info-menu" class="container-fluid user-info-menu">
 			<div style="float: right;">
-				<a onclick="hideUserMenu();">
-					<span class="close-modal glyphicon glyphicon-remove" style="margin-top: 7px; margin-right: -5px; color: darkgray;"></span>
-				</a>
+				<button type="button" class="close" aria-label="Close" style="margin-top: 7px; margin-right: -5px;" onclick="hideUserMenu();">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div>
 				<div style="display: inline-block; vertical-align: top; margin-top: 20px;">
