@@ -1,6 +1,7 @@
 package br.com.semperparata.servirweb.security;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.Accepts;
 import br.com.caelum.vraptor.AroundCall;
@@ -16,14 +17,16 @@ public class AutorizacaoInterceptor {
 	private UsuarioLogado usuarioLogado;
 	private Result result;
 	private ControllerMethod method;
+	private HttpServletRequest request;
 
 	public AutorizacaoInterceptor() {}
 	
 	@Inject
-	public AutorizacaoInterceptor(UsuarioLogado usuarioLogado, Result result, ControllerMethod method) {
+	public AutorizacaoInterceptor(UsuarioLogado usuarioLogado, Result result, ControllerMethod method, HttpServletRequest request) {
 		this.usuarioLogado = usuarioLogado;
 		this.result = result;
 		this.method = method;
+		this.request = request;
 	}
 	
 	@Accepts
@@ -36,6 +39,8 @@ public class AutorizacaoInterceptor {
 		if (usuarioLogado.isLogado()) {
 			stack.next();
 		} else {
+			String uri = request.getRequestURI();
+			usuarioLogado.setUrl(uri);
 			result.redirectTo(LoginController.class).form();
 		}
 	}

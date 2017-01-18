@@ -35,21 +35,28 @@
 
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-				</button>
-				<c:if test="${usuarioLogado.logado}">
+			<c:if test="${usuarioLogado.logado}">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+					</button>
 					<a class="navbar-brand" href="${linkTo[IndexController].index()}">Servir Web</a>
-					<a class="navbar-brand" href="${linkTo[CadastroController].lista()}">Cadastros</a>
-				</c:if>
-			</div>
-        	
-        	<c:if test="${usuarioLogado.logado}">
-				<div id="user-menu-img" class="navbar-form navbar-right">
-					<span>
-						<a class="navbar-brand" style="padding: 5px; height: auto;">${usuarioLogado.usuario.pessoa.primeiroNome}</a>
-					</span>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav nav-pills">
+						<li>
+							<a style="padding: 15px; font-size: 16px;" href="${linkTo[CadastroController].lista()}">Cadastros</a>
+						</li>
+						<li id="user-menu-img" style="float: right;">
+							<a style="padding: 15px;">
+								<label style="margin-bottom: 0px;">${usuarioLogado.usuario.pessoa.primeiroNome}</label>
+								<span class="badge">3</span>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</c:if>
 		</div>

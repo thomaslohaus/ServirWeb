@@ -39,13 +39,15 @@ $('#myTabs a').click(function (e) {
 	<input type="hidden" name="pessoa.id" id="id" value="${pessoa.id}" />
 	<input type="hidden" name="pessoa.documentos.id" value="${pessoa.documentos.id}" />
 	<input type="hidden" name="pessoa.bandeirante.id" value="${pessoa.bandeirante.id}" />
-<div class="page-header">
-	<div class="pull-right">
-		<a class="btn btn-default" href="${linkTo[CadastroController].lista()}">Voltar</a>
-		<input type="submit" value="Salvar" class="btn btn-success">
+	<input type="hidden" name="pessoa.bandeirante.entidade.id" value="${pessoa.bandeirante.entidade.id}" />
+	
+	<div class="page-header">
+		<div class="pull-right">
+			<a class="btn btn-default" href="${linkTo[CadastroController].lista()}">Voltar</a>
+			<input type="submit" value="Salvar" class="btn btn-success">
+		</div>
+		<h2>${empty pessoa.nome ? 'Cadastro' : pessoa.nome}</h2>
 	</div>
-	<h2>${empty pessoa.nome ? 'Cadastro' : pessoa.nome}</h2>
-</div>
 	<!-- Tabs -->
 	<ul class="nav nav-tabs" role="tablist" style="margin-top: 15px">
 		<servir:tab-menu tab="tab-pessoal"	descricao="Pessoal"		glyphicon="glyphicon-user"	active="true"/>
@@ -268,34 +270,41 @@ $('#myTabs a').click(function (e) {
 		</div>
 		
 		<div role="tabpanel" class="tab-pane" id="tab-bandeirante">
-			<label class="col-md-2 control-label" for="nucleo">Núcleo</label>
-			<div class="col-md-3 form-group-required" id="nucleo">
-				<select class="form-control">
-					<c:forEach items="${nucleos}" var="nucleo">
-						<c:set var="sel" value="${pessoa.bandeirante.entidade.nucleo.descricao eq nucleo.descricao ? 'selected':''}"></c:set>
-						<option value="${nucleo.id}" ${sel}>${nucleo.descricao}</option>
-					</c:forEach>
-				</select>
-			</div>
-			
-			<label class="col-md-2 control-label" for="grupo">Grupo</label>
-			<div class="col-md-3 form-group-required" id="grupo">
-				<select class="form-control">
-					<c:forEach items="${grupos}" var="grupo">
-						<c:set var="sel" value="${pessoa.bandeirante.entidade.grupo.descricao eq grupo.descricao ? 'selected':''}"></c:set>
-						<option value="${grupo.id}" ${sel}>${grupo.descricao}</option>
-					</c:forEach>
-				</select>
-			</div>
-			
-			<label class="col-md-2 control-label" for="equipe">Equipe</label>
-			<div class="col-md-3 form-group-required" id="equipe">
-				<select class="form-control" name="pessoa.bandeirante.entidade.equipe" disabled>
-					<c:forEach items="${equipes}" var="equipe">
-						<c:set var="sel" value="${pessoa.bandeirante.entidade.equipe.descricao eq equipe.descricao ? 'selected':''}"></c:set>
-						<option value="${equipe}" ${sel}>${equipe.descricao}</option>
-					</c:forEach>
-				</select>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<label class="col-md-2 control-label" for="nucleo">Núcleo</label>
+						<div class="col-md-3 form-group-required" id="nucleo">
+							<select class="form-control">
+								<c:forEach items="${nucleos}" var="nucleo">
+									<c:set var="sel" value="${pessoa.bandeirante.entidade.nucleo.descricao eq nucleo.descricao ? 'selected':''}"></c:set>
+									<option value="${nucleo.id}" ${sel}>${nucleo.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-md-2 control-label" for="grupo">Grupo</label>
+						<div class="col-md-3 form-group-required" id="grupo">
+							<select class="form-control">
+								<c:forEach items="${grupos}" var="grupo">
+									<c:set var="sel" value="${pessoa.bandeirante.entidade.grupo.descricao eq grupo.descricao ? 'selected':''}"></c:set>
+									<option value="${grupo.id}" ${sel}>${grupo.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>
+						
+						<label class="col-md-2 control-label" for="equipe">Equipe</label>
+						<div class="col-md-3 form-group-required" id="equipe">
+							<select class="form-control" name="pessoa.bandeirante.entidade">
+								<c:forEach items="${equipes}" var="equipe">
+									<c:set var="sel" value="${pessoa.bandeirante.entidade.equipe.descricao eq equipe.descricao ? 'selected':''}"></c:set>
+									<option value="${equipe.id}" ${sel}>${equipe.descricao}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				</div>
 			</div>
 		${pessoa.bandeirante.entidade.equipe.descricao}
 		</div>

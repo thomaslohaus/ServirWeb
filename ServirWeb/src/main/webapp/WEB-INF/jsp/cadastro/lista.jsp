@@ -2,8 +2,9 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 
-<a href="${linkTo[CadastroController].form()}">Novo cadastro</a>
-
+<div class="col-md-12" style="margin-bottom: 20px;">
+	<a class="btn btn-primary pull-right" href="${linkTo[CadastroController].form()}">Novo</a>
+</div>
 <table class="table table-hover">
   <thead>
 	<thead>

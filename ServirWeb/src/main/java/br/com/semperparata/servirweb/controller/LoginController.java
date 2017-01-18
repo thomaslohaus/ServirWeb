@@ -31,7 +31,7 @@ public class LoginController {
 	}
 	
 	@NoAuth
-	@Path("/Login/{param}")
+	@Path("/Login")
 	public void form() {}
 	
 	@NoAuth
@@ -39,7 +39,10 @@ public class LoginController {
 		Usuario usuario = usuarioDao.buscar(login, senha);
 		if (usuario != null) {
 			usuarioLogado.efetuarLogin(usuario);
-			result.redirectTo(IndexController.class).index();
+			if(usuarioLogado.getUrl() == null || usuarioLogado.getUrl().equals(""))
+				result.redirectTo(IndexController.class).index();
+			else
+				result.redirectTo(usuarioLogado.getUrl());
 		} else {
 			validator.add(new SimpleMessage("login_invalido", "Login ou Senha inválidos"));
 			validator.onErrorRedirectTo(this).form();
@@ -51,4 +54,5 @@ public class LoginController {
 		usuarioLogado.deslogar();
 		result.redirectTo(this).form();
 	}
+
 }
