@@ -11,7 +11,6 @@
 .fileUpload {
     position: relative;
     overflow: hidden;
-    margin: 10px;
 }
 .fileUpload input.upload {
     position: absolute;
@@ -35,7 +34,7 @@ $('#myTabs a').click(function (e) {
 	  $(this).tab('show')
 	})
 </script>
-<form action="${linkTo[CadastroController].salvar(null, null)}" method="post" enctype="multipart/form-data">
+<form action="${linkTo[CadastroController].salvar(null, null, null, null)}" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="pessoa.id" id="id" value="${pessoa.id}" />
 	<input type="hidden" name="pessoa.documentos.id" value="${pessoa.documentos.id}" />
 	<input type="hidden" name="pessoa.bandeirante.id" value="${pessoa.bandeirante.id}" />
@@ -180,12 +179,12 @@ $('#myTabs a').click(function (e) {
 										<input type="text" name="pessoa.documentos.cpfNumero" class="form-control" 
 											value="${pessoa.documentos.cpfNumero}" />
 									</div>
+									<div class="fileUpload btn btn-primary">
+										<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+										<input id="fileInput-Cpf" type="file" name="copiaCpf" class="upload">
+									</div>
+									<label id="uploadedFileName-Cpf"></label>
 								</div>
-								<div class="fileUpload btn btn-primary">
-									<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
-									<input id="fileinput" type="file" name="photo" class="upload">
-								</div>
-								<label id="uploadedFileName"></label>
 							</td>
 						</tr>
 						
@@ -200,6 +199,11 @@ $('#myTabs a').click(function (e) {
 										<input type="text" name="pessoa.documentos.rgNumero" class="form-control" 
 											value="${pessoa.documentos.rgNumero}" />
 									</div>
+									<div class="fileUpload btn btn-primary">
+										<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
+										<input id="fileInput-Rg" type="file" name="copiaRg" class="upload">
+									</div>
+									<label id="uploadedFileName-Rg"></label>
 								</div>
 								<br/> 
 								<div class="form-group">

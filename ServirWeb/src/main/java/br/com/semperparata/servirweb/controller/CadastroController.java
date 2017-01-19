@@ -81,15 +81,15 @@ public class CadastroController {
 	@Post
 	@NoAuth
 	@UploadSizeLimit(sizeLimit = 40 * 1024 * 1024, fileSizeLimit = 10 * 1024 * 1024)
-	public void salvar(@Valid Pessoa pessoa, UploadedFile photo) {
+	public void salvar(@Valid Pessoa pessoa, UploadedFile copiaCpf, UploadedFile copiaRg, UploadedFile copiaRne) {
 		validator.onErrorRedirectTo(this).form();
-		pessoaDao.persistir(pessoa);
+		//pessoaDao.persistir(pessoa);
 
 		Usuario usuario = usuarioDao.carrega(pessoa);
 		if (usuario == null) {
 			usuario = new Usuario(pessoa);
 		}
-		usuarioDao.persistir(usuario);
+		//usuarioDao.persistir(usuario);
 
 		result.redirectTo(this).lista();
 	}
