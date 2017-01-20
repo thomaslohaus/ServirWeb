@@ -313,8 +313,8 @@ $('#myTabs a').click(function (e) {
 		${pessoa.bandeirante.entidade.equipe.descricao}
 		</div>
 		
-		<div role="tabpanel" class="tab-pane" id="tab-saude">.Ficha Saúde.
-		<c:import url="/WEB-INF/jsp/cadastro/saude.jsp"/>
+		<div role="tabpanel" class="tab-pane" id="tab-saude">
+			<c:import url="/WEB-INF/jsp/cadastro/saude.jsp"/>
 		</div>
 		
 		<div role="tabpanel" class="tab-pane" id="tab-formacao">.Formação.
@@ -452,5 +452,16 @@ $('#fileinput').change(function() {
 	var name = fullname.substring(fullname.lastIndexOf('\\') + 1, fullname.length);
 	$('#uploadedFileName').text(name);	
 });
+
+$('#temConvenio input:radio').change(function() {
+	exibirDadosConvenio();
+});
+
+function exibirDadosConvenio() {
+	if ($('#temConvenio input:radio:checked').val() == 'true')
+		$('#dadosConvenio').show();
+	else
+		$('#dadosConvenio').hide();
+}
 </script>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>
