@@ -179,6 +179,9 @@ $('#myTabs a').click(function (e) {
 										<input type="text" name="pessoa.documentos.cpfNumero" class="form-control" 
 											value="${pessoa.documentos.cpfNumero}" />
 									</div>
+									<div class="fileUpload btn btn-success">
+										<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>
+									</div>
 									<div class="fileUpload btn btn-primary">
 										<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>
 										<input id="fileInput-Cpf" type="file" name="copiaCpf" class="upload">
@@ -447,10 +450,10 @@ $('#cpfNumero').children('input').blur(function() {
 		
 });
 
-$('#fileinput').change(function() {
-	var fullname = $('#fileinput').val();
+$('#fileInput-Cpf').change(function() {
+	var fullname = $('#fileInput-Cpf').val();
 	var name = fullname.substring(fullname.lastIndexOf('\\') + 1, fullname.length);
-	$('#uploadedFileName').text(name);	
+	$('#uploadedFileName-Cpf').text(name);	
 });
 
 $('#temConvenio input:radio').change(function() {
