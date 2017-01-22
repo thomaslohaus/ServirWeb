@@ -466,5 +466,18 @@ function exibirDadosConvenio() {
 	else
 		$('#dadosConvenio').hide();
 }
+
+function exibirDetalhes(radio) {
+	if ($(radio).val() == 'true') {
+		$(radio).parent().parent().parent().next('div').show();
+	} else {
+		$(radio).parent().parent().parent().next('div').hide();
+	}
+	
+}
+
+$(document).ready(function() {
+	exibirDetalhes($('#temAlergiaGeral input:radio:checked'));
+});
 </script>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>
