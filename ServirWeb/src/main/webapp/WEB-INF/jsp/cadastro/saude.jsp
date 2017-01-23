@@ -83,7 +83,7 @@
 					<label class="col-md-8 control-label" for="temAlergiaMedicamento">
 						É alergico a algum medicamento (penicilina, sulfa, tetramicina, aspirina, novalgina, outros)?
 					</label>
-					<div class="col-md-2" id="temAlergiaMedicamento">
+					<div class="col-md-2 radio" id="temAlergiaMedicamento">
 						<label class="radio-inline">
 							<input type="radio" name="temAlergiaMedicamento" value="true" onchange="exibirDetalhes(this)" />Sim
 						</label>
@@ -94,7 +94,7 @@
 				</div>
 				<div class="row" id="divDetalhesAlergiaMedicamento">
 					<label class="col-md-1 control-label" for="detalhesAlergiaMedicamento">Detalhes</label>
-					<div class="col-md-8" id="detalhesAlergiaMedicamento">
+					<div class="col-md-9" id="detalhesAlergiaMedicamento">
 						<textarea rows="3" name="detalhesAlergiaMedicamento" class="form-control"></textarea>
 					</div>
 				</div>
@@ -105,7 +105,7 @@
 					<label class="col-md-8 control-label" for="temAlergiaGeral">
 						É alergico a pó, mofo, palha, picada, corante, alimentos, etc?
 					</label>
-					<div class="col-md-2" id="temAlergiaGeral">
+					<div class="col-md-2 radio" id="temAlergiaGeral">
 						<label class="radio-inline">
 							<input type="radio" name="temAlergiaGeral" value="true" onchange="exibirDetalhes(this)"/>Sim
 						</label>
@@ -116,7 +116,7 @@
 				</div>
 				<div class="row detalhes" id="divDetalhesAlergiaGeral">
 					<label class="col-md-1 control-label" for="detalhesAlergiaGeral">Detalhes</label>
-					<div class="col-md-8" id="detalhesAlergiaGeral">
+					<div class="col-md-9" id="detalhesAlergiaGeral">
 						<textarea rows="3" name="detalhesAlergiaGeral" class="form-control"></textarea>
 					</div>
 				</div>
@@ -127,7 +127,7 @@
 					<label class="col-md-8 control-label" for="temFratura">
 						Teve fratura entorse, luxação, lesão em ligamentos ou lesão muscular?
 					</label>
-					<div class="col-md-2" id="temFratura">
+					<div class="col-md-2 radio" id="temFratura">
 						<label class="radio-inline">
 							<input type="radio" name="temFratura" value="true" onchange="exibirDetalhes(this)" />Sim
 						</label>
@@ -138,11 +138,140 @@
 				</div>
 				<div class="row" id="divFratura">
 					<label class="col-md-1 control-label" for="detalhesFratura">Detalhes</label>
-					<div class="col-md-8" id="detalhesFratura">
+					<div class="col-md-9" id="detalhesFratura">
 						<textarea rows="3" name="detalhesFratura" class="form-control"></textarea>
 					</div>
 				</div>
 			</div>
+			
+			<div>
+				<div class="row">
+					<label class="col-md-8 control-label" for="temImpedimentoCronico">
+						Tem algum impedimento crônico ou congênito (visual, asma, bronquite, convulsão, desmaios, etc)?
+					</label>
+					<div class="col-md-2 radio" id="temImpedimentoCronico">
+						<label class="radio-inline">
+							<input type="radio" name="temImpedimentoCronico" value="true" onchange="exibirDetalhes(this)" />Sim
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="temImpedimentoCronico" value="false" onchange="exibirDetalhes(this)" />Não
+						</label>
+					</div>
+				</div>
+				<div class="row" id="divImpedimentoCronico">
+					<label class="col-md-1 control-label" for="detalhesImpedimentoCronico">Detalhes</label>
+					<div class="col-md-9" id="detalhesImpedimentoCronico">
+						<textarea rows="3" name="detalhesImpedimentoCronico" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="row">
+					<label class="col-md-8 control-label" for="temProblemaMotor">
+						Tem problema de ordem motora?
+					</label>
+					<div class="col-md-2 radio" id="temProblemaMotor">
+						<label class="radio-inline">
+							<input type="radio" name="temProblemaMotor" value="true" onchange="exibirDetalhes(this)" />Sim
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="temProblemaMotor" value="false" onchange="exibirDetalhes(this)" />Não
+						</label>
+					</div>
+				</div>
+				<div class="row" id="divProblemaMotor">
+					<label class="col-md-1 control-label" for="detalhesProblemaMotor">Detalhes</label>
+					<div class="col-md-9" id="detalhesProblemaMotor">
+						<textarea rows="3" name="detalhesProblemaMotor" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="row">
+					<label class="col-md-8 control-label" for="temProblemaCardiaco">
+						Teve/tem problema cardíaco?
+					</label>
+					<div class="col-md-2 radio" id="temProblemaCardiaco">
+						<label class="radio-inline">
+							<input type="radio" name="temProblemaCardiaco" value="true" onchange="exibirDetalhes(this)" />Sim
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="temProblemaCardiaco" value="false" onchange="exibirDetalhes(this)" />Não
+						</label>
+					</div>
+				</div>
+				<div class="row" id="divProblemaCardiaco">
+					<label class="col-md-1 control-label" for="detalhesProblemaCardiaco">Detalhes</label>
+					<div class="col-md-9" id="detalhesProblemaCardiaco">
+						<textarea rows="3" name="detalhesProblemaCardiaco" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="row">
+					<label class="col-md-8 control-label" for="temDiabetes">
+						Tem diabetes?
+					</label>
+					<div class="col-md-2 radio" id="temDiabetes">
+						<label class="radio-inline">
+							<input type="radio" name="temDiabetes" value="true" onchange="exibirDetalhes(this)" />Sim
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="temDiabetes" value="false" onchange="exibirDetalhes(this)" />Não
+						</label>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="row">
+					<label class="col-md-12 control-label" for="doenças">
+						Doenças que já teve:
+					</label>
+					<div class="col-md-12 checkbox" id="doencas">
+						<div class="input-group col-md-2">
+							<span class="input-group-addon">
+								<input type="checkbox" aria-label="Cata">
+							</span>
+							<input type="text" class="form-control" value="Cata" readonly>
+						</div>
+						
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Catapora" />Catapora
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Caxumba" />Caxumba
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Coqueluche" />Coqueluche
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Hepatite" />Hepatite
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Meningite" />Meningite
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Rubeola" />Rubéola
+						</label>
+						<label class="checkbox-inline">
+							<input type="checkbox" name="doencas" value="Sarampo" />Sarampo
+						</label>
+					</div>
+					<div class="row outra-doenca" style="margin-left: 0px;">
+						<div class="input-group col-md-2">
+							<span class="input-group-addon">
+								<input type="checkbox" aria-label="Outros">
+							</span>
+							<input type="text" class="form-control" placeholder="Outra: descreva">
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </div>
