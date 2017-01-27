@@ -6,7 +6,6 @@
 	<a class="btn btn-primary pull-right" href="${linkTo[CadastroController].form()}">Novo</a>
 </div>
 <table class="table table-hover">
-  <thead>
 	<thead>
 		<tr class="default">
 			<th>Id</th>

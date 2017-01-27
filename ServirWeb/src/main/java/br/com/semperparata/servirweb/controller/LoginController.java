@@ -36,7 +36,7 @@ public class LoginController {
 	
 	@NoAuth
 	public void autenticar(String login, String senha) {
-		Usuario usuario = usuarioDao.buscar(login, senha);
+		Usuario usuario = usuarioDao.autenticar(login, senha);
 		if (usuario != null) {
 			usuarioLogado.efetuarLogin(usuario);
 			result.redirectTo(IndexController.class).index();

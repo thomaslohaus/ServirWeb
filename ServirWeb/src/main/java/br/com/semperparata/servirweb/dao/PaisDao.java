@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.semperparata.servirweb.enums.Pais;
+import br.com.semperparata.servirweb.model.Pais;
 
 @ApplicationScoped
 public class PaisDao {

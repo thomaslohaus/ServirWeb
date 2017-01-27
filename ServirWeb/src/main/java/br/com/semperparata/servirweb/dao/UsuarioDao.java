@@ -46,10 +46,22 @@ public class UsuarioDao {
 		}
 	}
 
-	public Usuario buscar(String login, String senha) {
-		TypedQuery<Usuario> query = manager.createQuery("select u from Usuario u where u.login = :login and u.senha = :senha", Usuario.class);
-		query.setParameter("login", login);
+	public Usuario autenticar(String login, String senha) {
+		TypedQuery<Usuario> query = manager.createQuery("select u from Usuario u where replace(u.login,'.', '') = :login and u.senha = :senha", Usuario.class);
+		query.setParameter("login", login.toLowerCase().replace(".", ""));
 		query.setParameter("senha", senha);
+		
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException nre) {
+			return null;
+		}
+	}
+	
+	public Usuario buscar(String login, String cpf) {
+		TypedQuery<Usuario> query = manager.createQuery("select u from Usuario u where replace(u.login,'.', '') = :login or u.pessoa.documentos.cpfNumero = :cpf", Usuario.class);
+		query.setParameter("login", login.toLowerCase().replace(".", ""));
+		query.setParameter("cpf", cpf);
 		
 		try {
 			return query.getSingleResult();

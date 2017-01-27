@@ -1,4 +1,4 @@
-package br.com.semperparata.servirweb.enums;
+package br.com.semperparata.servirweb.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

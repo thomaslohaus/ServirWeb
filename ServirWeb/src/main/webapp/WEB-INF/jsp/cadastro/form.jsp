@@ -4,6 +4,9 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp"/>
 <style>
+.checkbox, .radio {
+	margin-top: 0px;
+}
 .form-control-feedback {
 	text-align: inherit !important;
 }
@@ -272,13 +275,19 @@ $('#myTabs a').click(function (e) {
 			${pessoa.endereco.endereco}
 		</div>
 		
-		<div role="tabpanel" class="tab-pane" id="tab-familia">.Família.
-		
+		<div role="tabpanel" class="tab-pane" id="tab-familia">
+			<c:import url="/WEB-INF/jsp/cadastro/familia.jsp"/>
 		</div>
 		
 		<div role="tabpanel" class="tab-pane" id="tab-bandeirante">
 			<div class="panel panel-default">
 				<div class="panel-body">
+					<div class="row">
+						<label class="col-md-3 control-label" for="numeroRegistro">Nr. de Registro Bandeirante</label>
+						<div class="col-md-2 form-group-required" id="numeroRegistro">
+							<input type="text" name="numeroRegistro" class="form-control" value="" />
+						</div>
+					</div>
 					<div class="row">
 						<label class="col-md-2 control-label" for="nucleo">Núcleo</label>
 						<div class="col-md-3 form-group-required" id="nucleo">
@@ -320,8 +329,8 @@ $('#myTabs a').click(function (e) {
 			<c:import url="/WEB-INF/jsp/cadastro/saude.jsp"/>
 		</div>
 		
-		<div role="tabpanel" class="tab-pane" id="tab-formacao">.Formação.
-		
+		<div role="tabpanel" class="tab-pane" id="tab-formacao">
+			<c:import url="/WEB-INF/jsp/cadastro/formacao.jsp"/>
 		</div>
 	</div><!-- Tab Content -->
 	
@@ -350,10 +359,10 @@ function estadosBrasileiros(pais) {
 
 function documentosBrasileiros(pais) {
 	if (pais == 'BRA')	{
-		$('#DocCpf').show();
+		$('#DocRg').show();
 		$('#DocRne').hide();
 	} else {
-		$('#DocCpf').hide();
+		$('#DocRg').hide();
 		$('#DocRne').show();
 	}
 }
@@ -479,5 +488,104 @@ function exibirDetalhes(radio) {
 $(document).ready(function() {
 	exibirDetalhes($('#temAlergiaGeral input:radio:checked'));
 });
+
+function novaDoenca(i, c) {
+	var check = $(i).siblings('span').children('input');
+	if ($(i).val().trim() != "") {
+		check.prop('checked', true);
+		if ($('.input-checkbox-doenca').length < c)
+			addOutraDoenca($(i).parent().parent());
+	} else {
+		if ($('.input-checkbox-doenca').length > 1)
+			$(i).parent().remove();
+	}
+};
+
+function addOutraDoenca(d) {
+	d.append(
+		'<div class="input-group col-md-2" style="margin: 5px;">' + 
+			'<span class="input-group-addon">' + 
+				'<input type="checkbox" aria-label="Outros"> ' +
+			'</span>' +
+			'<input type="text" class="form-control input-checkbox-doenca" placeholder="Outra: descreva" onblur="novaDoenca(this, 4)">' +
+		'</div>'
+	)
+}
+
+function tipoRemedio(check) {
+	if ($(check).prop('id') == 'remedio-nenhum') {
+		if ($(check).prop('checked') == true) {
+			$('#remedio-alopaticos').prop('checked', false);
+			$('#remedio-homeopaticos').prop('checked', false);
+		}
+	} else {
+		if ($(check).prop('checked') == true) {
+			$('#remedio-nenhum').prop('checked', false);
+		}
+	}
+}
+
+function novoRemedio(tipo) {
+	var line =
+		'<tr class="default remedio-{tipo}">' + 
+		'	{sintoma}' +
+		'	<td><input type="text" class="form-control"></td>' + 
+		'	<td><input type="text" class="form-control"></td>' + 
+		'	<td><input type="text" class="form-control"></td>' +
+		'	<td style="text-align: center;  vertical-align: middle;">' + 
+		'		<button type="button" class="btn btn-danger btn-xs" onclick="removerRemedio(this)">' + 
+		'			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + 
+		'		</button>' + 
+		'	</td>' + 
+		'</tr>';
+	
+	line = line.replace('{tipo}', tipo);
+		
+	if (tipo == 'atual') {
+		line = line.replace('{sintoma}', '');
+		$('.remedio-atual').parent().append(line);
+	} else if (tipo == 'ocasional') {
+		line = line.replace('{sintoma}', '<td><input type="text" class="form-control"></td>');
+		$('.remedio-ocasional').parent().append(line);
+	}
+}
+
+function removerRemedio(btn) {
+	var row = $(btn).parent().parent();
+	var remedio = ($(btn).parent().parent().hasClass('remedio-atual')) ? '.remedio-atual' : '.remedio-ocasional';
+	if ($(remedio).length > 1) {
+		row.remove();
+	} else {
+		$(row).children().children('input').val('');
+	}
+}
+
+function novaVacina() {
+	var line =
+		'<tr class="default outras-vacinas">' + 
+		'	<td><input type="text" class="form-control"></td>' + 
+		'	<td><input type="checkbox" class="form-control"></td>' + 
+		'	<td><input type="text" class="form-control"></td>' + 
+		'	<td style="text-align: center;  vertical-align: middle;">' + 
+		'		<button type="button" class="btn btn-danger btn-xs" onclick="removerVacina(this)">' + 
+		'			<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + 
+		'		</button>' + 
+		'	</td>' + 
+		'</tr>';
+
+	if ($('.outras-vacinas').length > 0)
+		$('.outras-vacinas').parent().append(line);
+	else
+		$('.vacinas').parent().append(line);
+}
+
+function removerVacina(btn) {
+	var row = $(btn).parent().parent();
+	if ($('.outras-vacinas').length > 0) {
+		row.remove();
+	} else {
+		$(row).children().children('input').val('');
+	}
+}
 </script>
 <c:import url="/WEB-INF/jsp/footer.jsp"/>

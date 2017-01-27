@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -13,11 +14,13 @@ import br.com.caelum.vraptor.interceptor.IncludeParameters;
 import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
+import br.com.caelum.vraptor.view.Results;
 import br.com.semperparata.servirweb.dao.EntidadeDao;
 import br.com.semperparata.servirweb.dao.EstadoDao;
 import br.com.semperparata.servirweb.dao.PaisDao;
 import br.com.semperparata.servirweb.dao.PessoaDao;
 import br.com.semperparata.servirweb.dao.UsuarioDao;
+import br.com.semperparata.servirweb.enums.Escolaridade;
 import br.com.semperparata.servirweb.enums.EstadoCivil;
 import br.com.semperparata.servirweb.enums.Sexo;
 import br.com.semperparata.servirweb.model.Pessoa;
@@ -37,8 +40,6 @@ public class CadastroController {
 	private EntidadeDao entidadeDao;
 	
 	
-	
-
 	@Inject
 	public CadastroController(Result result, Validator validator, 
 			PessoaDao pessoaDao, UsuarioDao usuarioDao, EstadoDao estadoDao, PaisDao paisDao, EntidadeDao entidadeDao) {
@@ -63,6 +64,7 @@ public class CadastroController {
 		result.include("nucleos", entidadeDao.nucleos());
 		result.include("grupos", entidadeDao.grupos());
 		result.include("equipes", entidadeDao.equipes());
+		result.include("escolaridades", Escolaridade.values());
 	}
 
 	@Path(value = { "/cadastro", "/cadastro/" })
@@ -99,4 +101,15 @@ public class CadastroController {
 		List<Pessoa> pessoas = pessoaDao.lista();
 		result.include("pessoas", pessoas);
 	}
+	
+	@Get("/cadastros/busca.json")
+	  public void buscaJson(String nome) {
+	    result.use(Results.json()).from(pessoaDao.lista()).serialize();
+	    result.include("ps", pessoaDao.carrega(1));
+	  }
+	
+	@Get("/cadastros/carrega.xml")
+	  public void carregaJson(String nome) {
+		result.use(Results.json()).from(pessoaDao.carrega(1)).serialize();
+	  }
 }

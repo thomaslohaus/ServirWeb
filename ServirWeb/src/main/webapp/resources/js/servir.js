@@ -16,9 +16,14 @@ $(document).ready(function(){
 	function hideUserMenu() {
 		$('#user-info-menu').hide();
 	};
-	
+	 
 	function showUserMenu() {
 		$('#user-info-menu').show();
 	};
+	
+	$('.input-checkbox-doenca').blur(function() {
+		alert('oi');
+		alert($(this).val());
+	});
 	
 });
