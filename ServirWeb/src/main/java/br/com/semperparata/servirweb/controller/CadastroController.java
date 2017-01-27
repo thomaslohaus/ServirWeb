@@ -23,6 +23,7 @@ import br.com.semperparata.servirweb.dao.UsuarioDao;
 import br.com.semperparata.servirweb.enums.Escolaridade;
 import br.com.semperparata.servirweb.enums.EstadoCivil;
 import br.com.semperparata.servirweb.enums.Sexo;
+import br.com.semperparata.servirweb.enums.Tab;
 import br.com.semperparata.servirweb.model.Pessoa;
 import br.com.semperparata.servirweb.model.Usuario;
 import br.com.semperparata.servirweb.security.NoAuth;
@@ -56,7 +57,7 @@ public class CadastroController {
 	public CadastroController() {
 	}
 
-	private void incluirListasNoResult() {
+	private void incluirListasNoResult(String activeTab) {
 		result.include("sexos", Sexo.values());
 		result.include("estadosCivis", EstadoCivil.values());
 		result.include("estados", estadoDao.lista());
@@ -65,18 +66,21 @@ public class CadastroController {
 		result.include("grupos", entidadeDao.grupos());
 		result.include("equipes", entidadeDao.equipes());
 		result.include("escolaridades", Escolaridade.values());
+		
+		result.include("tabs", Tab.values());
+		result.include("activeTab", activeTab);
 	}
 
 	@Path(value = { "/cadastro", "/cadastro/" })
 	public void form() {
-		incluirListasNoResult();
+		incluirListasNoResult("");
 	}
 
 	@Path(value = { "/cadastro/{id}", "/cadastro/{id}/" })
-	public void form(int id) {
+	public void form(int id, String activeTab) {
 		Pessoa pessoa = pessoaDao.carrega(id);
 		result.include("pessoa", pessoa);
-		incluirListasNoResult();
+		incluirListasNoResult(activeTab);
 	}
 
 	@IncludeParameters
@@ -103,8 +107,8 @@ public class CadastroController {
 	}
 	
 	@Get("/cadastros/busca.json")
-	  public void buscaJson(String nome) {
-	    result.use(Results.json()).from(pessoaDao.lista()).serialize();
+	  public void buscaFamiliares(String email, String cpf) {
+	    result.use(Results.json()).from(pessoaDao.lista(email, cpf)).serialize();
 	    result.include("ps", pessoaDao.carrega(1));
 	  }
 	

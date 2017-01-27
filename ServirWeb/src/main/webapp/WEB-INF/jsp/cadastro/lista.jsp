@@ -46,7 +46,7 @@
 				<td>${pessoa.bandeirante.entidade.grupo.descricao}</td>
 				<td>${pessoa.bandeirante.entidade.nucleo.descricao}</td>
 				<td style="text-align: center;">
-					<a href="${linkTo[CadastroController].form(pessoa.id)}" data-toggle="tooltip" data-placement="top" title="Editar Cadastro">
+					<a href="${linkTo[CadastroController].form(pessoa.id, 'tab-pessoal')}" data-toggle="tooltip" data-placement="top" title="Editar Cadastro">
 						<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					</a>
 				</td>

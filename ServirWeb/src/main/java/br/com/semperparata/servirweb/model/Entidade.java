@@ -1,5 +1,7 @@
 package br.com.semperparata.servirweb.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,7 +14,7 @@ import br.com.semperparata.servirweb.enums.Ramo;
 import br.com.semperparata.servirweb.enums.TipoEntidade;
 
 @Entity
-public class Entidade {
+public class Entidade implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

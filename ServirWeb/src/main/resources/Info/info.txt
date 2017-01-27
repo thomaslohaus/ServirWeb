@@ -1,1 +1,3 @@
 http://respostas.guj.com.br/22015-select-de-cidades-e-estados-com-vraptor
+
+http://www.guj.com.br/t/resolvido-vraptor-problema-com-combobox-aninhado/298614/3
