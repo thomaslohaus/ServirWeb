@@ -127,7 +127,7 @@ $(document).ready(function() {
 // Máscaras
 $(document).ready(function() {
 	$('#celular').children('input').mask('(00) 90000-0000');
-	$('#cpfNumero').children('input').mask('000.000.000-00');
+	$('.cpf').mask('000.000.000-00');
 	$('#rgNumero').children('input').mask('00.000.000-0');
 });
 

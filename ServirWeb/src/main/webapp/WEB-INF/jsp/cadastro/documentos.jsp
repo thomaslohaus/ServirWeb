@@ -13,7 +13,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="cpfNumero">Número</label>
 						<div class="col-md-3" id="cpfNumero">
-							<input type="text" name="pessoa.documentos.cpfNumero" class="form-control" 
+							<input type="text" name="pessoa.documentos.cpfNumero" class="form-control cpf" 
 								value="${pessoa.documentos.cpfNumero}" />
 						</div>
 						<div class="fileUpload btn btn-success">
