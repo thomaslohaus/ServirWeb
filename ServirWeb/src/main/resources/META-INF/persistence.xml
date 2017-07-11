@@ -8,7 +8,7 @@
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://servir-web-dev.cm24v9fx0mqp.us-west-2.rds.amazonaws.com:3306/servirweb"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://servir-web-dev.cnexiaam9v2a.us-east-1.rds.amazonaws.com:3306/servirweb"/>
 			<property name="javax.persistence.jdbc.user" value="thomas"/>
 			<property name="javax.persistence.jdbc.password" value="servirweb"/>
 			

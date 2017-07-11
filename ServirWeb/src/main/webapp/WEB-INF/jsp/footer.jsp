@@ -21,7 +21,7 @@
 	</footer>
 	
 	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js"></script>
 	
 	<!-- Compiled and minified JavaScript -->
@@ -30,6 +30,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 	
 	<!-- Custom scripts -->
-	<script src="<c:url value="/resources/js/servir.js"/>"></script>
+	<script src="<c:url value="/resources/js/servir.js"/>" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
