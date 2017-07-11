@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div>
-				<input type="file" id="input-file-now" class="dropify" data-height="100">
+				<input type="file" id="input-file-now" class="dropify" data-height="100" data-allowed-file-extensions="jpg jpeg png psd bmp">
 				
 			</div>
 		</form>
