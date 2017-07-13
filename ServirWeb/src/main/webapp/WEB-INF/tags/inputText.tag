@@ -5,8 +5,9 @@
 <%@ attribute name="col" required="true" %>
 <%@ attribute name="type" required="false" %>
 <%@ attribute name="classes" required="false" %>
+<%@ attribute name="value" required="false" %>
 
 <div class="input-field col ${col}">
-	<input id="${id}" type="${type eq null ? 'text' : type}" class="${type eq 'date' ? '' : 'validate'} ${classes}">
+	<input id="${id}" type="${type eq null ? 'text' : type}" class="${type eq 'date' ? '' : 'validate'} ${classes}" value="${value}">
 	<label for="${id}">${text}</label>
 </div>

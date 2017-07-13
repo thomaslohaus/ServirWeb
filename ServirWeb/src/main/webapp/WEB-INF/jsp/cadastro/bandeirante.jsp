@@ -6,7 +6,7 @@
 		<div id="content-panel">
 			<div class="row page-title">
 				<div class="col l10 m10">
-					<h2>Cadastro</h2>
+					<h2>${pessoa.id eq null ? 'Novo Cadastro' : pessoa.nome}</h2>
 				</div>
 				<div class="col l2 m2">
 					<input id="foto34" type="file" id="input-file-now" class="dropify" data-height="100">
@@ -15,10 +15,10 @@
 			
 			<div id="dados-pessoais" class="row section scrollspy">
 				<div class="row">
-					<servir:inputText id="first_name" text="Nome Completo" col="s12"/>
+					<servir:inputText id="first_name" text="Nome Completo" col="s12" value="${pessoa.nome}"/>
 				</div>
 				<div class="row">
-					<servir:inputText id="birthday" text="Data Nasc." type="date" classes="datepicker" col="m4 s4"/>
+					<servir:inputText id="birthday" text="Data Nasc." type="text" classes="datepicker" col="m4 s4" value="${pessoa.dataNascimento}"/>
 					<div class="input-field col m4 s4">
 						<select id="nationality">
 							<option value="" disabled selected>Selecione seu país de nascimento</option>
@@ -44,24 +44,24 @@
 					<div class="input-field col m4 s4">
 						<select id="gender" class="required-field">
 							<option value="" disabled selected>Sexo</option>
-							<option value="F">Feminino</option>
-							<option value="M">Masculino</option>
+							<option value="F" ${pessoa.sexo eq 'F' ? 'selected':''}>Feminino</option>
+							<option value="M" ${pessoa.sexo eq 'M' ? 'selected':''}>Masculino</option>
 						</select>
 						<label for="gender">Sexo</label>
 					</div>
 					<div class="input-field col m4 s4">
 						<select id="estado-civil" class="required-field">
 							<option value="" disabled selected>Estado Civil</option>
-							<option value="S">Solteiro(a)</option>
-							<option value="C">Casado(a)</option>
+							<option value="S" ${pessoa.estadoCivil eq 'S' ? 'selected':''}>Solteiro(a)</option>
+							<option value="C" ${pessoa.estadoCivil eq 'C' ? 'selected':''}>Casado(a)</option>
 						</select>
 						<label for="estado-civil">Estado Civil</label>
 					</div>
-					<servir:inputText id="religion" text="Religião" classes="autocomplete" col="m4 s4" />
+					<servir:inputText id="religion" text="Religião" classes="autocomplete" col="m4 s4" value="${pessoa.religiao}"/>
 				</div>
 				<div class="row">
-					<servir:inputText id="email" text="E-mail" type="email" col="m6 s6" />
-					<servir:inputText id="cellphone" text="Celular" col="m6 s6" />
+					<servir:inputText id="email" text="E-mail" type="email" col="m6 s6" value="${pessoa.email}"/>
+					<servir:inputText id="cellphone" text="Celular" col="m6 s6" value="${pessoa.celular}"/>
 				</div>
 			</div>
 			<div id="documentos" class="section scrollspy">

@@ -95,14 +95,14 @@ $(function() {
 	    }
 	});
 	
-	$('.scrollspy').scrollSpy({
+	$('.scrollspy').scrollSpy();
+	
+	if ($('#naturalidade').val() != null || $('#nationality').val() == 'BRA') {
+		$('#naturalidade').removeAttr('disabled');
+		$('select').material_select();
+	}
 		
-	});
-});
-
-$('#first_name').blur(function() {
-	var name = $('#first_name').val().toUpperCase();
-	$('#first_name').val(name);
+	
 });
 
 $('#nationality').change(function() {
