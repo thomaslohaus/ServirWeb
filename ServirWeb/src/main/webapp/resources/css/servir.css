@@ -1,0 +1,28 @@
+#menu-panel {
+	position:	fixed;
+	top:		64px;
+	left:		85%;
+	height:		50%;
+}
+
+#content-panel {
+	width: 85%;
+	position: relative;
+}
+
+.dropify-message p {
+	text-align: center;
+}
+
+.table-of-contents li a {
+	border-color: green !important;
+}
+
+.table-of-contents li a.active {
+	border-color: blueviolet !important;
+}
+
+.page-title {
+	margin-top: 10px;
+	margin-bottom: 0px
+}

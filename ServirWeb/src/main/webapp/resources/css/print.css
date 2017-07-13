@@ -1,0 +1,19 @@
+@media print
+{
+	#menu-panel {
+		display: none !important;
+	}
+	#initialization {
+		display: block;
+		page-break-before: always;
+	}
+	.navbar-fixed {
+		display: none !important;
+	}
+	.page-footer {
+		display: none !important;
+	}
+	#content-panel {
+		width: 100%;
+	}
+}

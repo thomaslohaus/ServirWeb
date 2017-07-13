@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 		
 	<link rel="stylesheet" href="<c:url value="/resources/css/servir.css"/>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/print.css"/>">
 	
 </head>
 <body>

@@ -88,14 +88,16 @@ $(function() {
 	
 	$('.dropify').dropify({
 	    messages: {
-	        'default': 'Arraste uma foto aqui, ou clique para adicionar uma foto',
-	        'replace': 'Arraste uma foto aqui, ou clique para substituir a foto atual',
+	        'default': 'Foto 3x4',
+	        'replace': 'Foto 3x4',
 	        'remove':  'Remover',
 	        'error':   'Ooops, algo deu errado...'
 	    }
 	});
 	
-	$('.scrollspy').scrollSpy();
+	$('.scrollspy').scrollSpy({
+		
+	});
 });
 
 $('#first_name').blur(function() {
