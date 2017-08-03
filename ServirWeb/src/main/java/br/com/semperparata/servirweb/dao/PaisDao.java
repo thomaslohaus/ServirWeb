@@ -1,11 +1,11 @@
 package br.com.semperparata.servirweb.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.semperparata.servirweb.model.Pais;
 
@@ -20,33 +20,17 @@ public class PaisDao {
 	
 	public PaisDao(){}
 	
-	public List<Pais> lista() {
-		/*
+	public List<Pais> listarTodos() {
 		TypedQuery<Pais> query = manager.createQuery("select p from Pais p", Pais.class);
 		return query.getResultList();
-		*/
-		List<Pais> paises = new ArrayList<Pais>();
-		
-		Pais p = null;
-		p = new Pais();
-		p.setCodigo("BRA");
-		p.setDescricao("Brasil");
-		paises.add(p);
-		
-		p = new Pais();
-		p.setCodigo("GER");
-		p.setDescricao("Alemanha");
-		paises.add(p);
-		
-		p = new Pais();
-		p.setCodigo("SUI");
-		p.setDescricao("Suiça");
-		paises.add(p);
-		
-		return paises;
 	}
 	
-	public Pais carrega(int id) {
+	public Pais carregar(int id) {
 		return manager.find(Pais.class, id);
+	}
+	
+	public Pais salvar(Pais pais) {
+		manager.persist(pais);
+		return pais;
 	}
 }

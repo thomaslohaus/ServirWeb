@@ -11,9 +11,7 @@ public class Pais {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
 	private String codigo;
-	
     private String descricao;
 
 	public int getId() {

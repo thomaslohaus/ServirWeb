@@ -3,7 +3,8 @@
 	<h5 style="text-align: center;">Menu</h5>
 	<ul class="section table-of-contents">
 		<li><a href="#dados-pessoais">Dados Pessoais</a></li>
-		<li><a href="#documentos">Documentos</a></li>
+		<li><a href="#cadastro-bandeirante">Cadastro Bandeirante</a></li>
 		<li><a href="#endereco">Endereço</a></li>
+		<li><a href="#documentos">Documentos</a></li>
 	</ul>
 </div>

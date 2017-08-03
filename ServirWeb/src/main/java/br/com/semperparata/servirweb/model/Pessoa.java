@@ -1,17 +1,28 @@
 package br.com.semperparata.servirweb.model;
 
+import java.io.File;
+import java.io.Serializable;
+import java.util.Calendar;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-public class Pessoa {
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+@SuppressWarnings("serial")
+@Entity
+public class Pessoa implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String nome;
-	private String dataNascimento;
+	private Calendar dataNascimento;
 	private String nacionalidade;
 	private String naturalidade;
 	private String sexo;
@@ -19,6 +30,16 @@ public class Pessoa {
 	private String religiao;
 	private String email;
 	private String celular;
+	private File foto;
+	
+	@ManyToOne
+	private Usuario usuario;
+	
+	@Cascade(CascadeType.PERSIST)
+	@ManyToOne
+	private Endereco endereco;
+	
+	public Pessoa() {}
 	
 	public int getId() {
 		return id;
@@ -36,11 +57,11 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getDataNascimento() {
+	public Calendar getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -96,7 +117,31 @@ public class Pessoa {
 		return celular;
 	}
 
+	public void setFoto(File foto) {
+		this.foto = foto;
+	}
+	
+	public File getFoto() {
+		return foto;
+	}
+
 	public void setCelular(String celular) {
 		this.celular = celular;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

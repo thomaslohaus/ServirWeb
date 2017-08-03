@@ -28,8 +28,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-	
+
 	<!-- Custom scripts -->
 	<script src="<c:url value="/resources/js/servir.js"/>" type="text/javascript" charset="utf-8"></script>
+	<script src="<c:url value="/resources/js/cadastro.js"/>" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

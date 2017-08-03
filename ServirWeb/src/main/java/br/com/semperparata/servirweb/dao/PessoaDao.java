@@ -17,8 +17,9 @@ public class PessoaDao {
 	
 	public PessoaDao(){}
 	
-	public Pessoa carrega(int id) {
-		//return manager.find(Pessoa.class, id);
+	public Pessoa carregar(int id) {
+		return manager.find(Pessoa.class, id);
+		/*
 		Pessoa p = new Pessoa();
 		p.setId(id);
 		p.setNome("Thomas Alexnader Haegeli Lohaus");
@@ -31,5 +32,13 @@ public class PessoaDao {
 		p.setEmail("thomas.lohaus@gmail.com");
 		p.setCelular("11981417345");
 		return p;
+		*/
+	}
+	
+	public Pessoa salvar(Pessoa pessoa) {
+		manager.getTransaction().begin();
+		manager.persist(pessoa);
+		manager.getTransaction().commit();
+		return pessoa;
 	}
 }

@@ -19,7 +19,9 @@ $(function() {
 		}
 	});
 	
-	$('#religion').autocomplete(
+	$('.modal').modal();
+	
+	$('#religiao').autocomplete(
 		{
 			data: {
 				'Budista': null,
@@ -44,6 +46,7 @@ $(function() {
 			minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
 			}
 	);
+	
 	$('.datepicker').change(function(d){
 		if ($(this).val() != "") {
 			$(this).removeClass("invalid");
@@ -53,6 +56,7 @@ $(function() {
 			$(this).addClass("invalid");
 		}
 	});
+	
 	$('.datepicker').pickadate(
 		{
 			// Formats
@@ -60,8 +64,9 @@ $(function() {
 			selectYears: 100, // Creates a dropdown of 15 years to control year
 			min: new Date(1900, 1, 1),
 			max: new Date(),
-			format: 'dd mmm yyyy',
+			format: 'dd/mm/yyyy',
 			formatSubmit: 'yyyy-mm-dd',
+			hiddenName: true,
 			
 			// The title label to use for the month nav buttons
 	        labelMonthNext: 'Mês seguinte',
@@ -97,26 +102,9 @@ $(function() {
 	
 	$('.scrollspy').scrollSpy();
 	
-	if ($('#naturalidade').val() != null || $('#nationality').val() == 'BRA') {
-		$('#naturalidade').removeAttr('disabled');
-		$('select').material_select();
-	}
-		
-	
 });
 
-$('#nationality').change(function() {
-	if ($(this).val() == 'BRA') {
-		$('#naturalidade').removeAttr('disabled');
-		$('select').material_select();
-	} else {
-		$('#naturalidade').attr('disabled', true);
-		$('#naturalidade').prop('selectedIndex', 0);
-		$('select').material_select();
-	}
-});
-
-$('#cellphone').mask('(DD) Z0000-0000', {
+$('#celular').mask('(DD) Z0000-0000', {
 	translation: {
 		'D': {pattern: /[1-9]/},
 		'Z': {pattern: /[9]/}
