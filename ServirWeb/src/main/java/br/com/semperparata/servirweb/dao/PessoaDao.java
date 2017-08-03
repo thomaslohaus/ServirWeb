@@ -19,25 +19,14 @@ public class PessoaDao {
 	
 	public Pessoa carregar(int id) {
 		return manager.find(Pessoa.class, id);
-		/*
-		Pessoa p = new Pessoa();
-		p.setId(id);
-		p.setNome("Thomas Alexnader Haegeli Lohaus");
-		p.setDataNascimento("20 Ago 1986");
-		p.setNacionalidade("BRA");
-		p.setNaturalidade("SP");
-		p.setSexo("M");
-		p.setEstadoCivil("C");
-		p.setReligiao("Ateu");
-		p.setEmail("thomas.lohaus@gmail.com");
-		p.setCelular("11981417345");
-		return p;
-		*/
 	}
 	
 	public Pessoa salvar(Pessoa pessoa) {
 		manager.getTransaction().begin();
-		manager.persist(pessoa);
+		if (pessoa != null && pessoa.getId() > 0)
+			manager.merge(pessoa);
+		else
+			manager.persist(pessoa);
 		manager.getTransaction().commit();
 		return pessoa;
 	}

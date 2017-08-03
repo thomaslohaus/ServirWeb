@@ -4,11 +4,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.semperparata.servirweb.dao.GrupoBandeiranteDao;
-import br.com.semperparata.servirweb.dao.RamoBandeiranteDao;
-import br.com.semperparata.servirweb.model.GrupoBandeirante;
-import br.com.semperparata.servirweb.model.NucleoBandeirante;
-import br.com.semperparata.servirweb.model.RamoBandeirante;
+import br.com.semperparata.servirweb.dao.GrupoDao;
+import br.com.semperparata.servirweb.dao.RamoDao;
+import br.com.semperparata.servirweb.model.Grupo;
+import br.com.semperparata.servirweb.model.Nucleo;
+import br.com.semperparata.servirweb.model.Ramo;
 
 public class TestDB {
 
@@ -17,16 +17,16 @@ public class TestDB {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		EntityManager em = factory.createEntityManager();
 
-		NucleoBandeirante bororos = em.find(NucleoBandeirante.class, 4);
+		Nucleo bororos = em.find(Nucleo.class, 4);
 		
 		//LoadGrupo.load(em);
 		
-		RamoBandeiranteDao ramoDao = new RamoBandeiranteDao(em);
-		GrupoBandeiranteDao grupoDao = new GrupoBandeiranteDao(em);
+		RamoDao ramoDao = new RamoDao(em);
+		GrupoDao grupoDao = new GrupoDao(em);
 		
-		for (RamoBandeirante r : ramoDao.listarTodos()) {
+		for (Ramo r : ramoDao.listarTodos()) {
 			System.out.println(r.getNome());
-			for (GrupoBandeirante g : grupoDao.listarAtivosPorNucleoRamo(bororos, r)) {
+			for (Grupo g : grupoDao.listarAtivosPorNucleoRamo(bororos, r)) {
 				System.out.println(g.getNome());
 			}
 		} 

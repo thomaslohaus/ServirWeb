@@ -7,15 +7,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class GrupoBandeirante {
+public class Nucleo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
+	private String codigo;
 	@ManyToOne
-	private NucleoBandeirante nucleo;
+	private Estado estado;
 	@ManyToOne
-	private RamoBandeirante ramo;
+	private Endereco endereco;
 	private boolean ativo;
 
 	public int getId() {
@@ -34,20 +35,28 @@ public class GrupoBandeirante {
 		this.nome = nome;
 	}
 
-	public NucleoBandeirante getNucleo() {
-		return nucleo;
+	public String getCodigo() {
+		return codigo;
 	}
 
-	public void setNucleo(NucleoBandeirante nucleo) {
-		this.nucleo = nucleo;
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
 	}
 
-	public RamoBandeirante getRamo() {
-		return ramo;
+	public Estado getEstado() {
+		return estado;
 	}
 
-	public void setRamo(RamoBandeirante ramo) {
-		this.ramo = ramo;
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public boolean isAtivo() {

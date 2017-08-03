@@ -4,14 +4,15 @@
 
 <c:import url="/WEB-INF/jsp/header.jsp" />
 	<form action="${linkTo[CadastroController].salvar(null, null)}" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="pessoa.id" id="id" value="${pessoa.id}" class="upload" />
+		<input type="hidden" name="pessoa.id" value="${pessoa.id}" />
+		<input type="hidden" name="pessoa.endereco.id" value="${pessoa.endereco.id}" />
 		<div id="content-panel">
 			<div class="row page-title">
 				<div class="col l10 m10">
 					<h2>${pessoa.id eq null ? 'Novo Cadastro' : pessoa.nome}</h2>
 				</div>
 				<div class="col l2 m2">
-					<input id="foto34" name="foto34" type="file" id="input-file-now" class="dropify" data-height="100" data-allowed-file-extensions="jpg png jpeg gif">
+					<input id="foto34" name="foto34" type="file" class="dropify" data-height="100" data-allowed-file-extensions="jpg png jpeg gif" data-default-file="${pessoa.foto}">
 				</div>
 				<div class="fixed-action-btn">
 					<button class="btn waves-effect waves-light" type="submit" name="action">Salvar
@@ -206,22 +207,30 @@
 			
 			<div id="documentos" class="section scrollspy">
 				<h3>Documentos</h3>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
-				<p>Content </p>
+				<div class="row">
+					<div class="col s12 m5" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2); border-radius: 2px;">
+						<h5>CPF</h5>
+						<div class="input-field col s12">
+							<input id="cpf-numero" type="text">
+							<label for="cpf-numero">Número</label>
+						</div>
+					</div>
+					<div class="col s12 m5 offset-m1"  style="box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2); border-radius: 2px;">
+						<h5>RG</h5>
+						<div class="input-field col s12">
+							<input id="rg-numero" type="text">
+							<label for="rg-numero">Número</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="rg-orgao" type="text">
+							<label for="rg-orgao">Órgão Expeditor</label>
+						</div>
+						<div class="input-field col s12 m6">
+							<input id="data-nascimento" type="text" class="datepicker" id="rg-data">
+							<label for="rg-data">Data Expedição</label>
+						</div>
+					</div>
+				</div>
 				<p>Content </p>
 				<p>Content </p>
 			</div>

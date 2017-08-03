@@ -4,14 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class RamoBandeirante {
+public class Grupo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
-	private String tipoGrupo;
+	@ManyToOne
+	private Nucleo nucleo;
+	@ManyToOne
+	private Ramo ramo;
+	private boolean ativo;
 
 	public int getId() {
 		return id;
@@ -29,11 +34,28 @@ public class RamoBandeirante {
 		this.nome = nome;
 	}
 
-	public String getTipoGrupo() {
-		return tipoGrupo;
+	public Nucleo getNucleo() {
+		return nucleo;
 	}
 
-	public void setTipoGrupo(String tipoGrupo) {
-		this.tipoGrupo = tipoGrupo;
+	public void setNucleo(Nucleo nucleo) {
+		this.nucleo = nucleo;
 	}
+
+	public Ramo getRamo() {
+		return ramo;
+	}
+
+	public void setRamo(Ramo ramo) {
+		this.ramo = ramo;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 }

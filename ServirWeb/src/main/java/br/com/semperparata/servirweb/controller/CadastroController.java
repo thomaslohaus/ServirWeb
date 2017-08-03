@@ -18,16 +18,16 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.view.Results;
 import br.com.semperparata.servirweb.dao.EstadoDao;
-import br.com.semperparata.servirweb.dao.GrupoBandeiranteDao;
-import br.com.semperparata.servirweb.dao.NucleoBandeiranteDao;
+import br.com.semperparata.servirweb.dao.GrupoDao;
+import br.com.semperparata.servirweb.dao.NucleoDao;
 import br.com.semperparata.servirweb.dao.PaisDao;
 import br.com.semperparata.servirweb.dao.PessoaDao;
-import br.com.semperparata.servirweb.dao.RamoBandeiranteDao;
+import br.com.semperparata.servirweb.dao.RamoDao;
 import br.com.semperparata.servirweb.model.Estado;
-import br.com.semperparata.servirweb.model.NucleoBandeirante;
+import br.com.semperparata.servirweb.model.Nucleo;
 import br.com.semperparata.servirweb.model.Pais;
 import br.com.semperparata.servirweb.model.Pessoa;
-import br.com.semperparata.servirweb.model.RamoBandeirante;
+import br.com.semperparata.servirweb.model.Ramo;
 
 @Controller
 public class CadastroController {
@@ -36,9 +36,9 @@ public class CadastroController {
 	private PaisDao paisDao;
 	private EstadoDao estadoDao;
 	private PessoaDao pessoaDao;
-	private RamoBandeiranteDao ramoBandeiranteDao;
-	private NucleoBandeiranteDao nucleoBandeiranteDao;
-	private GrupoBandeiranteDao grupoBandeiranteDao;
+	private RamoDao ramoBandeiranteDao;
+	private NucleoDao nucleoBandeiranteDao;
+	private GrupoDao grupoBandeiranteDao;
 	
 	@SessionScoped
 	private List<Pais> paises;
@@ -56,7 +56,7 @@ public class CadastroController {
 	
 	@Inject
 	public CadastroController(Result result, PaisDao paisDao, EstadoDao estadoDao, PessoaDao pessoaDao, 
-			RamoBandeiranteDao ramoBandeiranteDao, NucleoBandeiranteDao nucleoBandeiranteDao, GrupoBandeiranteDao grupoBandeiranteDao) {
+			RamoDao ramoBandeiranteDao, NucleoDao nucleoBandeiranteDao, GrupoDao grupoBandeiranteDao) {
 		this.result = result;
 		this.paisDao = paisDao;
 		this.estadoDao = estadoDao;
@@ -76,7 +76,8 @@ public class CadastroController {
 
 	@Path(value={"/bandeirante/{id}", "/bandeirante/{id}/"})
 	public void bandeirante(int id) {
-		result.include("pessoa", pessoaDao.carregar(id));
+		Pessoa p = pessoaDao.carregar(id);
+		result.include("pessoa", p);
 		bandeirante();
 	}
 	
@@ -106,19 +107,24 @@ public class CadastroController {
 	
 	@Post
 	public void salvar(Pessoa pessoa, UploadedFile foto34) throws IOException {
-		System.out.println("ok");
 
-		InputStream is = foto34.getFile();
-		byte[] buffer = new byte[is.available()];
-	    is.read(buffer);
+		if (foto34 != null) {
+			InputStream is = foto34.getFile();
+			byte[] buffer = new byte[is.available()];
+		    is.read(buffer);
+		    
+		    File foto = new File("foto34");
+		    
+		    OutputStream outStream = new FileOutputStream(foto);
+		    outStream.write(buffer);
+		    outStream.close();
+		    is.close();
+		    
+		    pessoa.setFoto(foto);
+		}
+	    pessoaDao.salvar(pessoa);
 	    
-	    File targetFile = new File("C:\\java\\teste.jpg");
-	    OutputStream outStream = new FileOutputStream(targetFile);
-	    outStream.write(buffer);
-	    outStream.close();
-	    is.close();
-	    
-//		result.redirectTo(this).bandeirante();
+		result.redirectTo(this).bandeirante(pessoa.getId());
 	}
 	
 	@Get("/cadastro/religioes")
@@ -139,8 +145,8 @@ public class CadastroController {
 	
 	@Get("/cadastro/listaGrupos")
 	public void gruposPorNucleoRamo(int nucleo_id, int ramo_id) {
-		NucleoBandeirante nucleo = nucleoBandeiranteDao.carregar(nucleo_id);
-		RamoBandeirante ramo = ramoBandeiranteDao.carregar(ramo_id);
+		Nucleo nucleo = nucleoBandeiranteDao.carregar(nucleo_id);
+		Ramo ramo = ramoBandeiranteDao.carregar(ramo_id);
 		result.use(Results.json()).withoutRoot().from(grupoBandeiranteDao.listarAtivosPorNucleoRamo(nucleo, ramo)).serialize();
 	}
 	

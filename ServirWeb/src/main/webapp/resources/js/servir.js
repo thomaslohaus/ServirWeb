@@ -65,7 +65,7 @@ $(function() {
 			min: new Date(1900, 1, 1),
 			max: new Date(),
 			format: 'dd/mm/yyyy',
-			formatSubmit: 'yyyy-mm-dd',
+			formatSubmit: 'dd/mm/yyyy',
 			hiddenName: true,
 			
 			// The title label to use for the month nav buttons
