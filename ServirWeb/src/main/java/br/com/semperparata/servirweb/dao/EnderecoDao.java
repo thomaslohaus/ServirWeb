@@ -23,8 +23,14 @@ public class EnderecoDao {
 	
 	public Endereco salvar(Endereco endereco) {
 		manager.getTransaction().begin();
-		manager.persist(endereco);
+		
+		if (endereco != null && endereco.getId() > 0)
+			manager.merge(endereco);
+		else
+			manager.persist(endereco);
+		
 		manager.getTransaction().commit();
+		
 		return endereco;
 	}
 }

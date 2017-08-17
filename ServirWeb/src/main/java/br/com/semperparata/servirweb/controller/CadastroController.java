@@ -17,6 +17,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.view.Results;
+import br.com.semperparata.servirweb.dao.DocumentosDao;
+import br.com.semperparata.servirweb.dao.EnderecoDao;
 import br.com.semperparata.servirweb.dao.EstadoDao;
 import br.com.semperparata.servirweb.dao.GrupoDao;
 import br.com.semperparata.servirweb.dao.NucleoDao;
@@ -29,13 +31,22 @@ import br.com.semperparata.servirweb.model.Pais;
 import br.com.semperparata.servirweb.model.Pessoa;
 import br.com.semperparata.servirweb.model.Ramo;
 
+/**
+ * Controla o cadastro de pessoas
+ * @author Thomas Lohaus
+ *
+ */
 @Controller
 public class CadastroController {
 
 	private Result result;
 	private PaisDao paisDao;
 	private EstadoDao estadoDao;
+	
 	private PessoaDao pessoaDao;
+	private EnderecoDao enderecoDao;
+	private DocumentosDao documentosDao;
+	
 	private RamoDao ramoBandeiranteDao;
 	private NucleoDao nucleoBandeiranteDao;
 	private GrupoDao grupoBandeiranteDao;
@@ -50,35 +61,38 @@ public class CadastroController {
 	private List<Estado> estadosFBB;
 	
 	
-	
 	public CadastroController() {
 	}
 	
 	@Inject
-	public CadastroController(Result result, PaisDao paisDao, EstadoDao estadoDao, PessoaDao pessoaDao, 
+	public CadastroController(Result result,
+			PaisDao paisDao, EstadoDao estadoDao,
+			PessoaDao pessoaDao, EnderecoDao enderecoDao, DocumentosDao documentosDao,
 			RamoDao ramoBandeiranteDao, NucleoDao nucleoBandeiranteDao, GrupoDao grupoBandeiranteDao) {
 		this.result = result;
 		this.paisDao = paisDao;
 		this.estadoDao = estadoDao;
 		this.pessoaDao = pessoaDao;
+		this.enderecoDao = enderecoDao;
+		this.documentosDao = documentosDao;
 		this.ramoBandeiranteDao = ramoBandeiranteDao;
 		this.nucleoBandeiranteDao = nucleoBandeiranteDao;
 		this.grupoBandeiranteDao = grupoBandeiranteDao;
 	}
 	
-	@Path(value={"/bandeirante", "/bandeirante/"})
-	public void bandeirante(){
+	@Path(value={"/cadastro", "/cadastro/"})
+	public void pessoal(){
 		result.include("paises", getPaises());
 		result.include("estados", getEstadosBrasil());
 		result.include("estado_exterior", getEstadoExterior());
 		result.include("estadosFBB", getEstadosFBB());
 	}
 
-	@Path(value={"/bandeirante/{id}", "/bandeirante/{id}/"})
-	public void bandeirante(int id) {
+	@Path(value={"/cadastro/{id}", "/cadastro/{id}/"})
+	public void pessoal(int id) {
 		Pessoa p = pessoaDao.carregar(id);
 		result.include("pessoa", p);
-		bandeirante();
+		pessoal();
 	}
 	
 	private List<Pais> getPaises() {
@@ -122,9 +136,12 @@ public class CadastroController {
 		    
 		    pessoa.setFoto(foto);
 		}
+		enderecoDao.salvar(pessoa.getEndereco());
+		pessoa.getDocumentos().setPessoa(pessoa);
+		documentosDao.salvar(pessoa.getDocumentos());
 	    pessoaDao.salvar(pessoa);
 	    
-		result.redirectTo(this).bandeirante(pessoa.getId());
+		result.redirectTo(this).pessoal(pessoa.getId());
 	}
 	
 	@Get("/cadastro/religioes")

@@ -3,15 +3,53 @@
  */
 $(function() {
 	$('#cep-loader').hide();
-	$('#cep').mask('00000-000');
 	$('#loading-modal').modal({
 		dismissible: false
+	});
+	
+	$('#celular').mask('(DD) Z0000-0000', {
+		translation: {
+			'D': {pattern: /[1-9]/},
+			'Z': {pattern: /[9]/}
+		}
+	});
+	$('#end-cep').mask('00000-000');
+	$('#end-numero').mask('00000000');
+	$('#end-telefone').mask('(DD) 0000-0000', {
+		translation: {
+			'D': {pattern: /[1-9]/}
+		}
+	});
+	$('#cpf-numero').mask('000.000.000-00');
+	$('#rg-numero').mask('00.000.000-D', {
+		translation: {
+			'D': {pattern: /[Xx0-9]/}
+		}
 	});
 });
 
 
+
+$('#nome-completo').keyup(function() {
+	var nome = $('#nome-completo').val();
+	nome = nome.trim() == '' ? 'Cadastro' : nome; 
+	$('#titulo').children("h2").text(nome);
+});
+
+
 $('#busca-cep').click(function() {
-	var cep = $('#cep').val().replace(/\D/g, '');
+	var cep = $('#end-cep').val();
+	consultaCep(cep);
+});
+
+$('#end-cep').blur(function() {
+	var cep = $('#end-cep').val();
+	consultaCep(cep);
+})
+
+
+function consultaCep(cep) {
+	cep = cep.replace(/\D/g, '');
 	if (cep != "") {
 		//Expressão regular para validar o CEP.
         var validacep = /^[0-9]{8}$/;
@@ -28,6 +66,7 @@ $('#busca-cep').click(function() {
                     $("#end-cidade").val(endereco.localidade);
                     $("#end-uf").val(endereco.uf);
                     Materialize.updateTextFields();
+                    $('#end-uf').material_select();
                 } //end if.
                 else {
                     //CEP pesquisado não foi encontrado.
@@ -36,7 +75,7 @@ $('#busca-cep').click(function() {
             });
         }
 	}
-});
+}
 
 function exibeExterior() {
 	if ($('#naturalidade').val() != null && $('#nacionalidade').val() != 'BRA') {

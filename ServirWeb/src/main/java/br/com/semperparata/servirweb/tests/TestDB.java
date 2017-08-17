@@ -4,11 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import br.com.semperparata.servirweb.dao.GrupoDao;
-import br.com.semperparata.servirweb.dao.RamoDao;
-import br.com.semperparata.servirweb.model.Grupo;
-import br.com.semperparata.servirweb.model.Nucleo;
-import br.com.semperparata.servirweb.model.Ramo;
+import br.com.semperparata.servirweb.dao.DocumentosDao;
+import br.com.semperparata.servirweb.dao.PessoaDao;
+import br.com.semperparata.servirweb.model.Documentos;
+import br.com.semperparata.servirweb.model.Pessoa;
 
 public class TestDB {
 
@@ -17,20 +16,20 @@ public class TestDB {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 		EntityManager em = factory.createEntityManager();
 
-		Nucleo bororos = em.find(Nucleo.class, 4);
+		PessoaDao pessoaDao = new PessoaDao(em);
+		DocumentosDao documentosDao = new DocumentosDao(em);
 		
-		//LoadGrupo.load(em);
+		Pessoa pessoa = pessoaDao.carregar(1);
 		
-		RamoDao ramoDao = new RamoDao(em);
-		GrupoDao grupoDao = new GrupoDao(em);
+		Documentos d = new Documentos();
+		d.setCpfNumero("123.456.789-00");
+		pessoa.setDocumentos(d);
 		
-		for (Ramo r : ramoDao.listarTodos()) {
-			System.out.println(r.getNome());
-			for (Grupo g : grupoDao.listarAtivosPorNucleoRamo(bororos, r)) {
-				System.out.println(g.getNome());
-			}
-		} 
-
+		documentosDao.salvar(d);
+		pessoaDao.salvar(pessoa);
+		
+		
+		
 		System.out.println("ok");
 		em.close();
 	}

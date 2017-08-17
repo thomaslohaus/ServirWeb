@@ -1,10 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div id="menu-panel" class="indigo-text">
-	<h5 style="text-align: center;">Menu</h5>
+<div id="menu-panel">
 	<ul class="section table-of-contents">
-		<li><a href="#dados-pessoais">Dados Pessoais</a></li>
-		<li><a href="#cadastro-bandeirante">Cadastro Bandeirante</a></li>
-		<li><a href="#endereco">Endereço</a></li>
-		<li><a href="#documentos">Documentos</a></li>
+		<li><a style="width: 100%;" href="#dados-pessoais">Dados Pessoais</a></li>
+		<li><a style="width: 100%;" href="#endereco">Endereço</a></li>
+		<li><a style="width: 100%;" href="#documentos">Documentos</a></li>
 	</ul>
 </div>

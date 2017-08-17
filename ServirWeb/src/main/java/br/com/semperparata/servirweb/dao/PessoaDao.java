@@ -1,10 +1,14 @@
 package br.com.semperparata.servirweb.dao;
 
+import java.util.List;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.semperparata.servirweb.model.Pessoa;
+import br.com.semperparata.servirweb.model.Usuario;
 
 @ApplicationScoped
 public class PessoaDao {
@@ -23,11 +27,19 @@ public class PessoaDao {
 	
 	public Pessoa salvar(Pessoa pessoa) {
 		manager.getTransaction().begin();
+		
 		if (pessoa != null && pessoa.getId() > 0)
 			manager.merge(pessoa);
 		else
 			manager.persist(pessoa);
+		
 		manager.getTransaction().commit();
+		
 		return pessoa;
+	}
+
+	public List<Pessoa> listarPorUsuario(Usuario usuario) {
+		TypedQuery<Pessoa> query = manager.createQuery("select p from Pessoa p", Pessoa.class);
+		return query.getResultList();
 	}
 }

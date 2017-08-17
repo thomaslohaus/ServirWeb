@@ -1,12 +1,27 @@
 #menu-panel {
 	position:	fixed;
-	top:		64px;
-	left:		85%;
+	top:		120px;
+	right:		3%;
 	height:		50%;
+    z-index: 	998;
+}
+
+.menu-local-conteudo li a {
+	border-left: 0px !important;
+	color: #9fa8da !important;
+}
+
+.menu-local-conteudo li a:hover {
+	border-bottom: 1px solid !important;
+}
+
+.menu-local-conteudo li a.active {
+	border-bottom: 2px solid !important;
+	border-color: #9fa8da !important;
+	color: white !important;
 }
 
 #content-panel {
-	width: 85%;
 	position: relative;
 }
 
@@ -14,19 +29,85 @@
 	text-align: center;
 }
 
-.table-of-contents li a {
-	border-color: green !important;
-}
-
-.table-of-contents li a.active {
-	border-color: blueviolet !important;
-}
-
 .page-title {
-	margin-top: 10px;
+	margin-top: 3em;
 	margin-bottom: 0px
 }
 
 body    {
 	overflow-y:scroll !important;
+}
+
+.documento {
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+	border-radius: 2px;
+}
+
+.menu-local {
+	background-color: rgba(51,51,51,0.08);
+	overflow: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.menu-local a {
+	font-size: 1.3em;
+	font-weight: 400;
+}
+
+.oculto {
+	display: none;
+}
+
+.imagem-titulo {
+	height: 64px !important;
+	vertical-align: middle;
+}
+
+.texto-titulo {
+	vertical-align: middle;
+	font-size: 2em;
+}
+
+.titulo {
+	display: none;
+}
+
+@media only screen and (max-width: 992px) {
+	#dados-pessoais {
+		margin-top: 2.2em;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.titulo {
+		display: block;
+		font-size: 3.56rem;
+	    line-height: 110%;
+	    margin: 1.78rem 0 1.424rem 0;
+	}
+}
+
+header, main, footer {
+	padding-left: 200px;
+}
+
+ul.side-nav.fixed li a {
+    font-size: 13px;
+    line-height: 44px;
+    height: 44px;
+    padding: 0 30px;
+}
+
+ul.side-nav.fixed ul.collapsible-accordion .collapsible-body li a {
+    font-weight: 400;
+    padding: 0 37.5px 0 45px;
+}
+
+.menu-single a {
+	padding-left: 16px !important;
+}
+
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active {
+    background-color: #7986cb;
 }

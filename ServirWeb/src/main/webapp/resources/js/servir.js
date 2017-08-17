@@ -11,6 +11,8 @@ $(function() {
 	});
 	*/
 	
+	$(".button-collapse").sideNav();
+	
 	$('select').material_select();
 	
 	$('select').change(function() {
@@ -102,11 +104,4 @@ $(function() {
 	
 	$('.scrollspy').scrollSpy();
 	
-});
-
-$('#celular').mask('(DD) Z0000-0000', {
-	translation: {
-		'D': {pattern: /[1-9]/},
-		'Z': {pattern: /[9]/}
-	}
 });

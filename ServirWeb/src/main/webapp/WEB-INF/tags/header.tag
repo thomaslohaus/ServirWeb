@@ -1,4 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ attribute name="menu" required="false" %>
+<%@ attribute name="currentPage" required="false" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +27,14 @@
 	<div class="navbar-fixed">
 		<nav id="menu-principal" class="nav-extended indigo">
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo center">Logo</a>
-				<c:import url="/WEB-INF/jsp/menu.jsp" />
+				<a href="#" class="brand-logo center">
+					<span style="vertical-align: middle;">Servir Web</span>
+				</a>
+			</div>
+			<div class="nav-content">
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light teal">
+					<i class="material-icons">save</i>Salvar
+				</a>
 			</div>
 		</nav>
 	</div>
-	
-	
