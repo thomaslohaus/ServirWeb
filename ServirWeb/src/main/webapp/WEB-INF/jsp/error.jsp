@@ -23,7 +23,7 @@
               <p>Por favor, volte ao começo da trilha</p>
             </div>
             <div class="card-action right-align">
-               <a href="${linkTo[CadastroController].bandeirante()}" class="btn-floating btn-large waves-effect waves-light indigo"><i class="material-icons">adjust</i></a>
+               <a href="${linkTo[CadastroController].lista()}" class="btn-floating btn-large waves-effect waves-light indigo"><i class="material-icons">adjust</i></a>
             </div>
           </div>
         </div>

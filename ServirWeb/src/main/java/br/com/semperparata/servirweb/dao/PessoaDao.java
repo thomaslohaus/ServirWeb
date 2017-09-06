@@ -37,6 +37,15 @@ public class PessoaDao {
 		
 		return pessoa;
 	}
+	
+	public Pessoa salvarCascade(Pessoa pessoa, EnderecoDao enderecoDao, DocumentosDao documentosDao, FichaSaudeDao fichaSaudeDao) {
+		enderecoDao.salvar(pessoa.getEndereco());
+		documentosDao.salvar(pessoa.getDocumentos());
+		fichaSaudeDao.salvar(pessoa.getFichaSaude());
+		this.salvar(pessoa);
+		
+		return pessoa;
+	}
 
 	public List<Pessoa> listarPorUsuario(Usuario usuario) {
 		TypedQuery<Pessoa> query = manager.createQuery("select p from Pessoa p", Pessoa.class);

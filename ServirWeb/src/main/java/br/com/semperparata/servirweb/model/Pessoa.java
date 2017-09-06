@@ -11,9 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 @SuppressWarnings("serial")
 @Entity
 public class Pessoa implements Serializable {
@@ -32,16 +29,18 @@ public class Pessoa implements Serializable {
 	private String email;
 	private String celular;
 	private File foto;
-	@ManyToOne
+	
+	@OneToOne(mappedBy="pessoa")
 	private Usuario usuario;
 	
-	@Cascade(CascadeType.PERSIST)
 	@ManyToOne
 	private Endereco endereco;
 	
-	@Cascade(CascadeType.PERSIST)
-	@OneToOne(mappedBy = "pessoa")
+	@OneToOne
 	private Documentos documentos;
+	
+	@OneToOne
+	private FichaSaude fichaSaude;
 	
 	public Pessoa() {}
 	
@@ -155,5 +154,13 @@ public class Pessoa implements Serializable {
 
 	public void setDocumentos(Documentos documentos) {
 		this.documentos = documentos;
+	}
+
+	public FichaSaude getFichaSaude() {
+		return fichaSaude;
+	}
+
+	public void setFichaSaude(FichaSaude fichaSaude) {
+		this.fichaSaude = fichaSaude;
 	}
 }

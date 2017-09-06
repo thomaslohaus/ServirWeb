@@ -15,7 +15,7 @@ public class Documentos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "documentos")
 	private Pessoa pessoa;
 	private String cpfNumero;
 	private String cpgCopia;

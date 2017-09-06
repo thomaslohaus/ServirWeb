@@ -31,10 +31,9 @@ public class DashboardController {
 		this.pessoaDao = pessoaDao;
 	}
 	
-	@Path(value={"/cadastros", "/cadastros/"})
-	public void cadastros(){
-		Usuario usuario = null;
-		result.include("pessoas", pessoaDao.listarPorUsuario(usuario));
+	@Path("/")
+	public void dashboard() {
+		
 	}
 	
 }

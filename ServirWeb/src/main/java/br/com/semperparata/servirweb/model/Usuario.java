@@ -1,16 +1,17 @@
 package br.com.semperparata.servirweb.model;
 
-import java.util.List;
+import java.io.Serializable;
 
 import javax.jdo.annotations.Unique;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+@SuppressWarnings("serial")
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,8 +21,8 @@ public class Usuario {
 	private String senha;
 	private String googleID;
 
-	@OneToMany(mappedBy="usuario")
-	private List<Pessoa> pessoas;
+	@OneToOne
+	private Pessoa pessoa;
 
 	public int getId() {
 		return id;
@@ -55,11 +56,11 @@ public class Usuario {
 		this.googleID = googleID;
 	}
 
-	public List<Pessoa> getPessoas() {
-		return pessoas;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setPessoas(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	} 
 }

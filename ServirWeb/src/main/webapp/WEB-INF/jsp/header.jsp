@@ -20,14 +20,6 @@
 	<link rel="stylesheet" href="<c:url value="/resources/css/print.css"/>">
 	
 </head>
-<body>
-	<div class="navbar-fixed">
-		<nav id="menu-principal" class="nav-extended indigo">
-			<div class="nav-wrapper">
-				<a href="#" class="brand-logo center">Logo</a>
-				<c:import url="/WEB-INF/jsp/menu.jsp" />
-			</div>
-		</nav>
-	</div>
+
 	
 	

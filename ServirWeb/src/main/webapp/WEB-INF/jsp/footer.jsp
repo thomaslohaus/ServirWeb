@@ -5,8 +5,6 @@
 				<nav>
 					<div class="nav-wrapper indigo">
 						<div class="col s12">
-							<a href="${linkTo[DashboardController].cadastros()}" class="breadcrumb indigo">Cadastros</a>
-							<a href="${linkTo[CadastroController].pessoal()}" class="breadcrumb">Dados Pessoais</a>
 						</div>
 					</div>
 				</nav>

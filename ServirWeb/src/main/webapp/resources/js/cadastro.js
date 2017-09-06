@@ -7,7 +7,7 @@ $(function() {
 		dismissible: false
 	});
 	
-	$('#celular').mask('(DD) Z0000-0000', {
+	$('.input-celular').mask('(DD) Z0000-0000', {
 		translation: {
 			'D': {pattern: /[1-9]/},
 			'Z': {pattern: /[9]/}
@@ -15,7 +15,7 @@ $(function() {
 	});
 	$('#end-cep').mask('00000-000');
 	$('#end-numero').mask('00000000');
-	$('#end-telefone').mask('(DD) 0000-0000', {
+	$('.input-telefone').mask('(DD) 0000-0000', {
 		translation: {
 			'D': {pattern: /[1-9]/}
 		}
@@ -26,6 +26,8 @@ $(function() {
 			'D': {pattern: /[Xx0-9]/}
 		}
 	});
+	
+	atualizarDadosConvenio(!$('#possuiConvenio').prop('checked'));
 });
 
 
@@ -203,3 +205,67 @@ function atualizListaGrupos() {
 
 $('#nucleo-bandeirante').change(atualizListaGrupos);
 $('#ramo-bandeirante').change(atualizListaGrupos);
+
+function atualizarDadosConvenio(desativar) {
+	$('#nome-convenio').prop('disabled', desativar);
+	$('#numero-convenio').prop('disabled', desativar);
+	$('#validade-convenio').prop('disabled', desativar);
+	$('#hospital-convenio').prop('disabled', desativar);
+	$('#telefone-convenio').prop('disabled', desativar);
+}
+
+$('#possuiConvenio').change(function() {
+	atualizarDadosConvenio(!$('#possuiConvenio').prop('checked'));
+});
+
+
+$('.check-doencas').change(function() {
+	var c = $(this).prop('checked');
+	$(this).parent().parent().parent().parent().find('textarea').prop('disabled', !c);
+});
+
+function novaLinhaRemedio() {
+	var linha = $('<tr>');
+	
+	var colunaSintoma = $('<td>');
+	var inputSintoma = $('<input>').attr('type', 'text');
+	colunaSintoma.append(inputSintoma);
+	linha.append(colunaSintoma);
+	
+	var colunaRemedio = $('<td>');
+	var inputRemedio = $('<input>').attr('type', 'text');
+	colunaRemedio.append(inputRemedio);
+	linha.append(colunaRemedio);
+	
+	var colunaDosagem = $('<td>');
+	var inputDosagem = $('<input>').attr('type', 'text');
+	colunaDosagem.append(inputDosagem);
+	linha.append(colunaDosagem);
+	
+	var colunaHorario = $('<td>');
+	var inputHorario = $('<input>').attr('type', 'text');
+	colunaHorario.append(inputHorario);
+	linha.append(colunaHorario);
+	
+	var colunaRemover = $('<td>');
+	var linkRemover = $('<a>');
+		linkRemover.addClass('btn-floating').addClass('waves-effect').addClass('waves-light').addClass('red').addClass('tooltipped');
+		linkRemover.attr('data-position', 'right').attr('data-delay', '50').attr('data-tooltip', 'Remover Remédio');
+		linkRemover.click(removeLinhaRemedios);
+	var iconRemover = $('<i>').addClass('small').addClass('material-icons').text('delete');
+	
+	linkRemover.append(iconRemover);
+	colunaRemover.append(linkRemover);
+	linha.append(colunaRemover);
+	
+	return linha;
+}
+
+$('#adiciona-remedio-atual').click(function() {
+	$('#remedios-atuais').append(novaLinhaRemedio);o
+});
+
+
+function removeLinhaRemedios() {
+	$(this).parent().parent().remove();
+};

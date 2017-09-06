@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ attribute name="active" required="false" %>
+<%@ attribute name="activeTab" required="false" %>
+<%@ attribute name="parentTab" required="false" %>
 
 <div>
 	<ul id="nav-mobile" class="side-nav fixed collection" style="transform: translateX(0%);">
@@ -11,19 +12,25 @@
 				</a>
 			</div>
 		</li>
-		<li class="collection-item">
+		<li class="collection-item menu-user">
 			<div class="center">
-				<p style="font-size: 1.1em;">thomas.lohaus@gmail.com</p>
+				<p style="font-size: 1.1em;">${usuarioLogado.usuario.login}</p>
+				
 				<a class="btn waves-effect waves-light">Editar</a>
 				<a class="btn waves-effect waves-light red darken-2">Logout</a>
 			</div>
 		</li>
+		<li class="menu-title center">
+			<h5>MENU</h5>
+		</li>
 		<li class="menu-single">
-			<a href="about.html" class="waves-effect waves-teal">About</a>
+			<a href="${linkTo[CadastroController].lista()}" class="waves-effect waves-teal">Cadastros</a>
 		</li>
 		<li class="menu-single">
 			<a href="getting-started.html" class="waves-effect waves-teal">Getting Started</a>
 		</li>
+		<li>&nbsp;</li>
+<!-- 
 		<li class="menu-multiple">
 			<ul class="collapsible collapsible-accordion">
 				<li ><a class="collapsible-header waves-effect waves-teal">CSS</a>
@@ -92,6 +99,6 @@
 		<li class="menu-single">
 			<a href="themes.html" class="waves-effect waves-teal">Themes<span class="new badge"></span></a>
 		</li>
-		<li class="menu-single">&nbsp;</li>
+-->
 	</ul>
 </div>
